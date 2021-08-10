@@ -6,6 +6,9 @@ image: ea-wq-incident-web
 
 labels: {}
 
+appInsights:
+  key:
+
 containerConfigMap:
   name: ea-wq-incident-web-config-map
 
