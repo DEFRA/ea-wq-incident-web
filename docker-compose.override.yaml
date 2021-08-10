@@ -5,6 +5,8 @@ version: '3.8'
 
 services:
   ea-wq-incident-web:
+    depends_on:
+      - redis
     build:
       target: development
     image: ea-wq-incident-web-development
