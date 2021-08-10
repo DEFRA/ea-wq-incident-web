@@ -10,6 +10,8 @@ services:
     image: ea-wq-incident-web-development
     container_name: ea-wq-incident-web-test
     command: npm run test
+    environment: 
+      NODE_ENV: test
     volumes:
       - ./app:/home/node/app
       - ./test:/home/node/test
