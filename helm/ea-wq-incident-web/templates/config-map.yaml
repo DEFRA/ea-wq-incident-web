@@ -10,5 +10,4 @@ data:
   REDIS_PARTITION: {{ quote .Values.container.redisPartition }}
   SESSION_TIMEOUT_IN_MINUTES: {{ quote .Values.container.sessionTimeoutInMinutes }}
   STATIC_CACHE_TIMEOUT_IN_MILLIS: {{ quote .Values.container.staticCacheTimeoutInMillis }}
-  COOKIE_TTL_IN_MILLIS: {{ quote .Values.container.cookieTtlInMillis }}
 {{- end -}}
