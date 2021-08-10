@@ -1,0 +1,3 @@
+{{- include "ffc-helm-library.azure-ingress" (list . "ea-wq-incident-web.ingress") -}}
+{{- define "ea-wq-incident-web.ingress" -}}
+{{- end -}}
