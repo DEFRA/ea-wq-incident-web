@@ -12,7 +12,7 @@ services:
     command: npm run test
     volumes:
       - ./app:/home/node/app
-      - ./test:/home/node/test/
+      - ./test:/home/node/test
       - ./test-output:/home/node/test-output
       - ./jest.config.js:/home/node/jest.config.js
       - ./package.json:/home/node/package.json
