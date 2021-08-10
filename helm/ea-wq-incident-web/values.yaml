@@ -1,49 +1,72 @@
 environment: development
 name: ea-wq-incident-web
-namespace: ea-im
-workstream: ea-im
+namespace: ea-wq
 image: ea-wq-incident-web
+workstream: ea-wq
 
-labels: {}
+labels:
+  component: web
 
 appInsights:
   key:
 
+azureIdentity:
+  clientID: not-a-real-clientID
+  resourceID: not-a-real-resourceID
+
 containerConfigMap:
   name: ea-wq-incident-web-config-map
 
-deployment:
-  restartPolicy: Always
-  priorityClassName: default
-  replicas: 1
-  minReadySeconds: 0
+containerSecret:
+  name: ea-wq-incident-web-container-secret
+  type: Opaque
+
+service:
+  port: 80
+  type: ClusterIP
 
 container:
-  imagePullPolicy: IfNotPresent
-  requestMemory: 10Mi
-  requestCpu: 10m
-  limitMemory: 40Mi
-  limitCpu: 40m
-  port: 3000
   redisHostname: redis-redis-ha.default
   redisPassword: redis
   redisPort: 6379
-  redisPartition: ea-incident-form
-  cookiePassword: cookiepassword_cookiepassword_cookiepassword_cookiepassword
-  sessionTimeoutInMinutes: 20
-  staticCacheTimeoutInMillis: 2000000
-  cookieTtlInMillis: 2000000
-
-livenessProbe:
-  path: /healthz
+  redisPartition: ea-wq
+  imagePullPolicy: IfNotPresent
+  requestMemory: 10Mi
+  requestCpu: 10m
+  limitMemory: 80Mi
+  limitCpu: 80m
+  restClientTimeoutMillis: 20000
+  staticCacheTimeoutMillis: 54000
   port: 3000
-  initialDelaySeconds: 10
-  periodSeconds: 10
-  failureThreshold: 3
+  cookiePassword: passwordpasswordpasswordpasswordpassword
+  googleTagManagerKey: GTM-N5QK7RX
+  protectiveMonitoringUrl:
+
+ingress:
+  class: nginx
+  endpoint: ea-wq
+  server: example.com
+
+deployment:
+  restartPolicy: Always
+  priorityClassName: low
+  replicas: 1
+  minReadySeconds: 5
+  imagePullSecret:
+  useLinkerd: true
 
 readinessProbe:
   path: /healthy
   port: 3000
-  initialDelaySeconds: 10
+  initialDelaySeconds: 20
   periodSeconds: 10
   failureThreshold: 3
+
+livenessProbe:
+  path: /healthz
+  port: 3000
+  initialDelaySeconds: 30
+  periodSeconds: 10
+  failureThreshold: 3
+
+aadPodIdentity: true
