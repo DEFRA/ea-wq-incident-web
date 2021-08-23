@@ -1,4 +1,5 @@
 const sessionHandler = require('../services/session-handler')
+const { sendEmail } = require('../services/notify')
 
 function ViewModel (complaint) {
   // Constructor function to create logic dependent nunjucks page
@@ -14,9 +15,16 @@ module.exports = {
   method: 'GET',
   path: '/confirmation',
   options: {
-    handler: (request, h) => {
+    handler: async (request, h) => {
       const complaint = sessionHandler.get(request, 'complaint')
-      return h.view('confirmation', new ViewModel(complaint))
+
+      // TODO - ds: Ensure incident data is valid (get schema from plugin?)
+      if (!complaint.notifyReceiptId) {
+        const result = await sendEmail(complaint)
+        sessionHandler.update(request, 'complaint', { notifyReceiptId: result.data.id })
+
+        return h.view('confirmation', new ViewModel(complaint))
+      }
     }
   }
 }

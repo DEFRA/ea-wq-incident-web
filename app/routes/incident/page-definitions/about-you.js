@@ -42,7 +42,7 @@ module.exports = {
     },
     {
       type: 'TextField',
-      name: 'Postcode',
+      name: 'postcode',
       title: 'Postcode',
       options: { classes: 'govuk-input--width-20' }
     },
@@ -57,8 +57,8 @@ module.exports = {
       type: 'TelephoneNumberField',
       name: 'phonenumber',
       title: 'Phone number',
-      hint: '(optional - as an alternative to an email address in case we need to contact you)',
-      options: { classes: 'govuk-input--width-10' }
+      hint: '(as an alternative to an email address in case we need to contact you)',
+      options: { classes: 'govuk-input--width-10', required: false }
     }
   ]
 }
