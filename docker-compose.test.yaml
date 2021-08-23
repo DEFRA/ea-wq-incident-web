@@ -12,6 +12,9 @@ services:
     command: npm run test
     environment: 
       NODE_ENV: test
+      EMAIL_TO_ADDRESS: test@test.com
+      NOTIFY_API_KEY: fake-api-key-for-testing
+      NOTIFY_TEMPLATE_ID: fake-template-id
     volumes:
       - ./test:/home/node/test
       - ./test-output:/home/node/test-output
