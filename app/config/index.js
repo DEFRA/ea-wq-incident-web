@@ -19,7 +19,10 @@ const schema = Joi.object({
     isHttpOnly: Joi.bool().default(true),
     clearInvalid: Joi.bool().default(false),
     strictHeader: Joi.bool().default(true)
-  })
+  }),
+  emailToAddress: Joi.string().email().required(),
+  notifyApiKey: Joi.string().required(),
+  notifyTemplateId: Joi.string().required()
 })
 
 const config = {
@@ -41,7 +44,10 @@ const config = {
     isHttpOnly: true,
     clearInvalid: false,
     strictHeader: true
-  }
+  },
+  emailToAddress: process.env.EMAIL_TO_ADDRESS,
+  notifyApiKey: process.env.NOTIFY_API_KEY,
+  notifyTemplateId: process.env.NOTIFY_TEMPLATE_ID
 }
 
 // Validate config

@@ -10,4 +10,6 @@ data:
   REDIS_PARTITION: {{ quote .Values.container.redisPartition }}
   SESSION_TIMEOUT_IN_MINUTES: {{ quote .Values.container.sessionTimeoutInMinutes }}
   STATIC_CACHE_TIMEOUT_IN_MILLIS: {{ quote .Values.container.staticCacheTimeoutInMillis }}
+  EMAIL_TO_ADDRESS: {{ quote .Values.container.emailToAddress }}
+  NOTIFY_TEMPLATE_ID: {{ quote .Values.container.notifyTemplateId }}
 {{- end -}}
