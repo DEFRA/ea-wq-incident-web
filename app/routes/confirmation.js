@@ -18,7 +18,7 @@ module.exports = {
     handler: async (request, h) => {
       const complaint = sessionHandler.get(request, 'complaint')
 
-      // TODO - ds: Ensure incident data is valid (get schema from plugin?)
+      // TODODS: Ensure incident data is valid (get schema from plugin?)
       if (!complaint.notifyReceiptId) {
         const result = await sendEmail(complaint)
         sessionHandler.update(request, 'complaint', { notifyReceiptId: result.data.id })
