@@ -4,10 +4,6 @@ function sendEmail (client, templateId, emailAddress, data) {
       personalisation: data,
       reference: ''
     })
-    .catch(err => {
-      console.error(err)
-      throw err
-    })
 }
 
 module.exports = { sendEmail }
