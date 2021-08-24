@@ -1,3 +1,4 @@
+const joi = require('joi')
 const sessionHandler = require('../services/session-handler')
 const { sendEmail } = require('../services/notify')
 
@@ -11,6 +12,25 @@ function ViewModel (complaint) {
   this.complaint = complaint
 }
 
+const schema = joi.object().keys({
+  firstName: joi.string().required(),
+  lastName: joi.string().required(),
+  address: joi.string().required(),
+  addressLine1: joi.string().empty(null).default(''),
+  addressLine2: joi.string().empty(null).default(''),
+  townOrCity: joi.string().required(),
+  postcode: joi.string().required(),
+  email: joi.string().email().required(),
+  phonenumber: joi.string().empty(null).default(''),
+  smellStrength: joi.string().required(),
+  smellAtHome: joi.string().required(),
+  smellLocation: joi.string().empty(null).default(''),
+  smellDescription: joi.string().empty(null).default(''),
+  dateOfSmell: joi.date().required(),
+  timeOfSmell: joi.string().regex(/^([0-9]{2}):([0-9]{2})$/).required(),
+  notifyReceiptId: joi.string().guid()
+}).required()
+
 module.exports = {
   method: 'GET',
   path: '/confirmation',
@@ -18,13 +38,26 @@ module.exports = {
     handler: async (request, h) => {
       const complaint = sessionHandler.get(request, 'complaint')
 
-      // TODODS: Ensure incident data is valid (get schema from plugin?)
-      if (!complaint.notifyReceiptId) {
-        const result = await sendEmail(complaint)
-        sessionHandler.update(request, 'complaint', { notifyReceiptId: result.data.id })
+      // Validate config
+      const result = schema.validate(complaint, {
+        abortEarly: false
+      })
 
-        return h.view('confirmation', new ViewModel(complaint))
+      // Return to the start if the data is invalid
+      if (result.error) {
+        return h.redirect('/')
       }
+
+      // Use the joi validated value
+      const value = result.value
+
+      // Send the email
+      await sendEmail(value)
+
+      // Clear the session state
+      sessionHandler.reset(request)
+
+      return h.view('confirmation', new ViewModel(value))
     }
   }
 }

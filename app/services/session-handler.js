@@ -18,5 +18,8 @@ module.exports = {
   },
   clear: function (request, key) {
     request.yar.clear(key)
+  },
+  reset: function (request) {
+    request.yar.reset()
   }
 }
