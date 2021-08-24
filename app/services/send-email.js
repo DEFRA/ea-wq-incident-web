@@ -4,6 +4,12 @@ function formatData (data) {
     personalisation[key] = data[key] === null ? '' : data[key]
   }
 
+  // Location of smell is a conditional question
+  // so check for its presence and default (use joi here)
+  if (personalisation.smellLocation === undefined) {
+    personalisation.smellLocation = ''
+  }
+
   return personalisation
 }
 
