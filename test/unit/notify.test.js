@@ -2,11 +2,14 @@ const sendEmailError = new Error('Email send error')
 const mockSuccessfulSendEmail = jest.fn().mockResolvedValue({ result: true })
 const mockFailedSendEmail = jest.fn().mockRejectedValue(sendEmailError)
 
+const mockNotifyTemplateId = 'notifyTemplateId'
+const mockEmailToAddress = 'test@test.com'
+
 jest.mock('../../app/config', () => {
   return {
     notifyApiKey: 'notifyApiKey',
-    notifyTemplateId: 'notifyTemplateId',
-    emailToAddress: 'test@test.com'
+    notifyTemplateId: mockNotifyTemplateId,
+    emailToAddress: mockEmailToAddress
   }
 })
 
@@ -25,8 +28,12 @@ describe('notify', () => {
     })
 
     const { sendEmail } = require('../../app/services/notify')
-    const result = await sendEmail({})
-    expect(mockSuccessfulSendEmail).toHaveBeenCalled()
+    const mockData = {}
+    const result = await sendEmail(mockData)
+    expect(mockSuccessfulSendEmail).toHaveBeenCalledWith(mockNotifyTemplateId, mockEmailToAddress, {
+      personalisation: mockData,
+      reference: ''
+    })
     expect(result).toEqual({ result: true })
   })
 
