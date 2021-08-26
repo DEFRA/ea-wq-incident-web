@@ -22,15 +22,9 @@ overridden by build and release pipelines.
 
 | Name                           | Description                               | Required  | Default            | Valid                       
 | ----                           | -----------                               | :-------: | -------            | -----                       
-| CACHE_NAME                     | Cache name                                | no        | redisCache         |                  
-| COOKIE_PASSWORD                | Redis cookie password                     | yes       |                    |                             
+| COOKIE_PASSWORD                | Cookie password                     | yes       |                    |                             
 | NODE_ENV                       | Node environment                          | no        | development        | development,test,production 
 | PORT                           | Port number                               | no        | 3000               |                             
-| REDIS_HOSTNAME                 | Redis host                                | no        | localhost          |                             
-| REDIS_PORT                     | Redis port                                | no        | 6379               |  
-| REDIS_PASSWORD                 | Redis password                            | no        |                    |
-| REDIS_PARTITION                | Redis partition                           | no        | ea-incident-form   |        
-| SESSION_TIMEOUT_IN_MINUTES     | Redis session timeout                     | no        | 30                 |                             
 | STATIC_CACHE_TIMEOUT_IN_MILLIS | static file cache timeout                 | no        | 54000 (15 minutes) |                             
 
 ## Test structure

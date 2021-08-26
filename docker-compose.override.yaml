@@ -5,8 +5,6 @@ version: '3.8'
 
 services:
   ea-wq-incident-web:
-    depends_on:
-      - redis
     build:
       target: development
     image: ea-wq-incident-web-development
@@ -17,12 +15,4 @@ services:
     volumes:
       - ./app:/home/node/app
       - ./package.json:/home/node/package.json
-  redis:
-    image: redis:4.0.14
-    volumes:
-      - redis_data:/data
-    ports:
-      - "6379:6379"
 
-volumes:
-  redis_data:

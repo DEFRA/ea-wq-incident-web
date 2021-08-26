@@ -6,6 +6,7 @@ module.exports = {
       name: 'smellDescription',
       title: 'How would you describe the smell',
       titleForError: 'Answer how would you describe the smell',
+      schema: { max: 400 },
       options: { rows: 5, required: false }
     },
     {

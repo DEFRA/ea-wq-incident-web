@@ -26,10 +26,6 @@ service:
   type: ClusterIP
 
 container:
-  redisHostname: redis-redis-ha.default
-  redisPassword: redis
-  redisPort: 6379
-  redisPartition: ea-wq
   imagePullPolicy: IfNotPresent
   requestMemory: 10Mi
   requestCpu: 10m

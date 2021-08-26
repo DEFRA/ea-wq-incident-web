@@ -8,12 +8,7 @@ services:
     image: ea-wq-incident-web
     container_name: ea-wq-incident-web
     environment:
-      REDIS_HOSTNAME: ${REDIS_HOSTNAME:-redis}
-      # REDIS_PORT: ${REDIS_PORT}
-      # REDIS_PASSWORD: ${REDIS_PASSWORD}
-      # REDIS_PARTITION: ${REDIS_PARTITION}
       COOKIE_PASSWORD: ${COOKIE_PASSWORD:-cookiecookiecookiecookiecookiecookie}
-      # SESSION_TIMEOUT_IN_MINUTES: ${SESSION_TIMEOUT_IN_MINUTES}
       # STATIC_CACHE_TIMEOUT_IN_MILLIS: ${STATIC_CACHE_TIMEOUT_IN_MILLIS}
       # COOKIE_TTL_IN_MILLIS: ${COOKIE_TTL_IN_MILLIS}
       EMAIL_TO_ADDRESS: ${EMAIL_TO_ADDRESS}

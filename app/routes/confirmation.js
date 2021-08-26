@@ -13,22 +13,21 @@ function ViewModel (complaint) {
 }
 
 const schema = joi.object().keys({
-  firstName: joi.string().required(),
-  lastName: joi.string().required(),
-  address: joi.string().required(),
-  addressLine1: joi.string().empty(null).default(''),
-  addressLine2: joi.string().empty(null).default(''),
-  townOrCity: joi.string().required(),
-  postcode: joi.string().required(),
-  email: joi.string().email().required(),
-  phonenumber: joi.string().empty(null).default(''),
+  firstName: joi.string().max(60).required(),
+  lastName: joi.string().max(60).required(),
+  address: joi.string().max(70).required(),
+  addressLine1: joi.string().max(70).empty(null).default(''),
+  addressLine2: joi.string().max(70).empty(null).default(''),
+  townOrCity: joi.string().max(70).required(),
+  postcode: joi.string().max(10).required(),
+  email: joi.string().email().max(100).required(),
+  phonenumber: joi.string().max(20).empty(null).default(''),
   smellStrength: joi.string().required(),
   smellAtHome: joi.string().required(),
-  smellLocation: joi.string().empty(null).default(''),
-  smellDescription: joi.string().empty(null).default(''),
+  smellLocation: joi.string().max(400).empty(null).default(''),
+  smellDescription: joi.string().max(400).empty(null).default(''),
   dateOfSmell: joi.date().required(),
-  timeOfSmell: joi.string().regex(/^([0-9]{2}):([0-9]{2})$/).required(),
-  notifyReceiptId: joi.string().guid()
+  timeOfSmell: joi.string().regex(/^([0-9]{2}):([0-9]{2})$/).required()
 }).required()
 
 module.exports = {
