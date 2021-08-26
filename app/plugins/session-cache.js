@@ -3,7 +3,7 @@ module.exports = {
   plugin: require('@hapi/yar'),
   options: {
     storeBlank: true,
-    maxCookieSize: 4,
+    maxCookieSize: 4000,
     cookieOptions: {
       password: config.cookiePassword,
       // production is currently not https, so a new cookie is created for every request, including css
