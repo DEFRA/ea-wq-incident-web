@@ -30,7 +30,7 @@ module.exports = {
       name: 'addressLine1',
       title: 'Address line 1',
       schema: { max: 70 },
-      options: { classes: 'govuk-input--width-20', required: false }
+      options: { classes: 'govuk-input--width-20' }
     },
     {
       type: 'TextField',
