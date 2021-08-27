@@ -1,8 +1,7 @@
 # EA Incident Management Incident Form
 
 A digital service to enable complaints about Environment Agency incidents to be registered. 
-This is the web front end for the application. It contains a
-simple user journey based upon the hapi-govuk-question-page component.
+This is the web front end for the application.
 
 ## Prerequisites
 

@@ -17,7 +17,7 @@ const schema = joi.object().keys({
   lastName: joi.string().max(60).required(),
   address: joi.string().max(70).required(),
   addressLine1: joi.string().max(70).required(),
-  addressLine2: joi.string().max(70).empty(null).default(''),
+  addressLine2: joi.string().max(70).allow('').required(),
   townOrCity: joi.string().max(70).required(),
   postcode: joi.string().max(10).required(),
   email: joi.string().email().max(100).required(),

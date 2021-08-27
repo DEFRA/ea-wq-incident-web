@@ -1,0 +1,38 @@
+{% extends "two-thirds.njk" %}
+
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back"
+  }) }}
+{% endblock %}
+
+{% block twoThirds %}
+  {% if errorList.length %}
+    {{
+      govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: errorList
+      })
+    }}
+  {% endif %}
+
+  {% block beforeForm %}
+  {% endblock %}
+
+  <form id="form" method="post" action="{{formAction | default('')}}"
+    novalidate enctype="{{formEncType | default('application/x-www-form-urlencoded')}}">
+    {% block form %}
+    {% endblock %}
+
+    {% block button %}
+      {{ govukButton({ text: formSubmitButtonText | default("Continue") }) }}
+    {% endblock %}
+  </form>
+
+  {% block afterForm %}
+  {% endblock %}
+{% endblock %}

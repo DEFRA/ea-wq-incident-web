@@ -1,0 +1,30 @@
+{% extends "form.njk" %}
+
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+
+{% block beforeForm %}
+  <h1 class="govuk-heading-l">About you</h1>
+{% endblock %}
+
+{% block form %}
+  <div id="about-you">
+    {{ govukInput(fields.firstName) }}
+    {{ govukInput(fields.lastName) }}
+
+    {% call govukFieldset({
+      legend: {
+        text: "What is your address?",
+        classes: "govuk-fieldset__legend--m"
+      }
+    }) %}
+      {{ govukInput(fields.address) }}
+      {{ govukInput(fields.addressLine1) }}
+      {{ govukInput(fields.addressLine2) }}
+      {{ govukInput(fields.townOrCity) }}
+      {{ govukInput(fields.postcode) }}
+    {% endcall %}
+    {{ govukInput(fields.email) }}
+    {{ govukInput(fields.phonenumber) }}
+  </div>
+{% endblock %}

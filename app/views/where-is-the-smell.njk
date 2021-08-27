@@ -1,0 +1,13 @@
+{% extends "form.njk" %}
+
+{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+
+{% block beforeForm %}
+  <h1 class="govuk-heading-l">Where is the smell</h1>
+{% endblock %}
+
+{% block form %}
+  <div id="where-is-the-smell">
+    {{ govukTextarea(fields.smellLocation) }}
+  </div>
+{% endblock %}

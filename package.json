@@ -20,7 +20,6 @@
   "contributors": [],
   "license": "OGL-UK-3.0",
   "dependencies": {
-    "@envage/hapi-govuk-question-page": "^0.3.0",
     "@hapi/hapi": "19.x",
     "@hapi/hoek": "^9.1.1",
     "@hapi/inert": "^6.0.3",

@@ -1,21 +1,33 @@
 const sessionHandler = require('../../services/session-handler')
+const { schema, ViewModel } = require('../../models/about-you')
 
 module.exports = [
   {
-    method: ['GET', 'POST'],
+    method: 'GET',
     path: '/about-you',
-    handler: {
-      'hapi-govuk-question-page': {
-        getConfig: () => {
-          return {
-            $PAGE$: { title: 'About you' }
-          }
-        },
-        getData: (request) => sessionHandler.get(request, 'complaint'),
-        getNextPath: () => './about-the-smell',
-        pageDefinition: require('./page-definitions/about-you')
-      }
+    handler: (request, h) => {
+      const data = sessionHandler.get(request, 'complaint')
+      const model = new ViewModel(data)
+
+      return h.view('about-you', model)
+    }
+  },
+  {
+    method: 'POST',
+    path: '/about-you',
+    handler: (request, h) => {
+      sessionHandler.update(request, 'complaint', request.payload)
+
+      return h.redirect('/about-the-smell')
     },
-    options: require('./question-page-options')
+    options: {
+      validate: {
+        payload: schema,
+        failAction: async (request, h, err) => {
+          const model = new ViewModel(request.payload, err)
+          return h.view('about-you', model).takeover()
+        }
+      }
+    }
   }
 ]
