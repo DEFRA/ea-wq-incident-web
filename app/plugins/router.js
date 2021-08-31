@@ -9,7 +9,9 @@ const routes = [].concat(
   require('../routes/incident/where-is-the-smell'),
   require('../routes/incident/details-of-the-smell'),
   require('../routes/confirmation'),
-  require('../routes/cookies/cookies')
+  require('../routes/cookies/cookies'),
+  require('../routes/accessibility-statement'),
+  require('../routes/privacy-notice')
 )
 
 module.exports = {
