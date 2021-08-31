@@ -47,7 +47,7 @@ describe('Home test', () => {
       lastName: 'Test',
       address: 'Institute of test',
       addressLine1: '345',
-      addressLine2: null,
+      addressLine2: '',
       townOrCity: 'Teston',
       postcode: 'T3 5TR',
       email: 'tester@test.com',
