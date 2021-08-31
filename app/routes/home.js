@@ -1,9 +1,10 @@
 module.exports = {
   method: 'GET',
   path: '/',
-  options: {
-    handler: (request, h) => {
-      return h.view('home')
+  handler: {
+    view: {
+      template: 'home',
+      context: { noIndex: false }
     }
   }
 }

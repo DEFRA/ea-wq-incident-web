@@ -1,9 +1,14 @@
 {% extends "govuk/template.njk" %}
 
 {% block head %}
-{% if cookiesPolicy and cookiesPolicy.analytics %}
-  {% include "./tag-manager/_head-content.njk" %}
-{% endif %}
+  {% if noIndex %}
+    <meta name="robots" content="noindex" />
+  {% endif %}
+
+  {% if cookiesPolicy and cookiesPolicy.analytics %}
+    {% include "./tag-manager/_head-content.njk" %}
+  {% endif %}
+
   <!--[if !IE 8]><!-->
   <% htmlWebpackPlugin.files.css.forEach(file => { %>
   <link href="<%= file.replace('../dist/', '/static/') %>" rel="stylesheet">
@@ -64,7 +69,7 @@
 
 {% block bodyEnd %}
   {# Run JavaScript at end of the <body>, to avoid blocking the initial render. #}
-<% htmlWebpackPlugin.files.js.forEach(file => { %>
-  <script src="<%= file.replace('../dist/', '/static/') %>"></script>
-<% }) %>
+  <% htmlWebpackPlugin.files.js.forEach(file => { %>
+    <script src="<%= file.replace('../dist/', '/static/') %>"></script>
+  <% }) %>
 {% endblock %}
