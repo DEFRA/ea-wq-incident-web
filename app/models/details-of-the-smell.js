@@ -7,10 +7,6 @@ const SMELL_DESCRIPTION_LENGTH = 400
 
 const DATE_OF_SMELL_KEY = 'dateOfSmell'
 const DATE_OF_SMELL_LABEL = 'What date did you notice the smell'
-const DATE_OF_SMELL_OPTIONS = {
-  attributes: { max: '2018-12-31' },
-  type: 'date'
-}
 
 const TIME_OF_SMELL_KEY = 'timeOfSmell'
 const TIME_OF_SMELL_LABEL = 'What time of day did you notice the smell'
@@ -23,8 +19,8 @@ const TIME_OF_SMELL_OPTIONS = {
 
 const schema = joi.object().keys({
   [SMELL_DESCRIPTION_KEY]: joi.string().max(SMELL_DESCRIPTION_LENGTH).label(SMELL_DESCRIPTION_LABEL).required().allow(''),
-  [DATE_OF_SMELL_KEY]: joi.date().label(DATE_OF_SMELL_LABEL).required(),
-  [TIME_OF_SMELL_KEY]: joi.string().label(TIME_OF_SMELL_LABEL).required()
+  [DATE_OF_SMELL_KEY]: joi.date().less('now').label(DATE_OF_SMELL_LABEL).required(),
+  [TIME_OF_SMELL_KEY]: joi.string().regex(/^([0-9]{2}):([0-9]{2})$/).label(TIME_OF_SMELL_LABEL).required()
 }).options(schemaOptions).required()
 
 class ViewModel extends BaseViewModel {
@@ -32,11 +28,12 @@ class ViewModel extends BaseViewModel {
     super(data, err)
 
     if (this.data.dateOfSmell) {
-      const date = new Date(this.data.dateOfSmell)
-      const year = date.getFullYear()
-      const month = date.getMonth()
-      const day = date.getDate()
-      this.data.dateOfSmell = `${year}-${month}-${day}`
+      this.data.dateOfSmell = this.data.dateOfSmell.split('T')[0]
+    }
+
+    const DATE_OF_SMELL_OPTIONS = {
+      attributes: { max: (new Date()).toISOString().split('T')[0] },
+      type: 'date'
     }
 
     this.addField(SMELL_DESCRIPTION_KEY, `${SMELL_DESCRIPTION_LABEL} (optional)`)

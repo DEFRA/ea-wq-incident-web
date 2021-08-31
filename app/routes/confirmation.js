@@ -1,6 +1,24 @@
 const joi = require('joi')
 const sessionHandler = require('../services/session-handler')
 const { sendEmail } = require('../services/notify')
+const { schema: aboutYouSchema } = require('../models/about-you')
+const { schema: aboutSmellSchema } = require('../models/about-the-smell')
+const { schema: isSmellAtHomeSchema } = require('../models/is-the-smell-at-home')
+const { schema: whereIsSmellSchema, SMELL_LOCATION_KEY } = require('../models/where-is-the-smell')
+const { schema: detailsOfSmellSchema } = require('../models/details-of-the-smell')
+
+const schema = joi.object().required()
+  .concat(aboutYouSchema)
+  .concat(aboutSmellSchema)
+  .concat(isSmellAtHomeSchema)
+  .concat(whereIsSmellSchema)
+  .concat(detailsOfSmellSchema)
+  // The smell location page may not have been visited
+  // so we need to accomodate for that here by marking
+  // the key as optinoal and applying a default
+  .keys({
+    [SMELL_LOCATION_KEY]: joi.optional().default('')
+  })
 
 function ViewModel (complaint) {
   // Constructor function to create logic dependent nunjucks page
@@ -11,24 +29,6 @@ function ViewModel (complaint) {
 
   this.complaint = complaint
 }
-
-const schema = joi.object().keys({
-  firstName: joi.string().max(60).required(),
-  lastName: joi.string().max(60).required(),
-  address: joi.string().max(70).required(),
-  addressLine1: joi.string().max(70).required(),
-  addressLine2: joi.string().max(70).allow('').required(),
-  townOrCity: joi.string().max(70).required(),
-  postcode: joi.string().max(10).required(),
-  email: joi.string().email().max(100).required(),
-  phonenumber: joi.string().max(20).empty(null).default(''),
-  smellStrength: joi.string().required(),
-  smellAtHome: joi.string().required(),
-  smellLocation: joi.string().max(400).empty(null).default(''),
-  smellDescription: joi.string().max(400).empty(null).default(''),
-  dateOfSmell: joi.date().required(),
-  timeOfSmell: joi.string().regex(/^([0-9]{2}):([0-9]{2})$/).required()
-}).required()
 
 module.exports = {
   method: 'GET',

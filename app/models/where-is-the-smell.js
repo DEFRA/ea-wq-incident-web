@@ -23,6 +23,7 @@ class ViewModel extends BaseViewModel {
 }
 
 module.exports = {
+  SMELL_LOCATION_KEY,
   schema,
   ViewModel
 }
