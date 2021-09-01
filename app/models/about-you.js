@@ -28,6 +28,7 @@ const TOWN_OR_CITY_LENGTH = 70
 const POSTCODE_KEY = 'postcode'
 const POSTCODE_LABEL = 'Postcode'
 const POSTCODE_LENGTH = 10
+const POSTCODE_PATTERN = /^[A-Z]{1,2}[0-9][0-9A-Z]?\s*[0-9][A-Z]{2}/i
 
 const EMAIL_KEY = 'email'
 const EMAIL_LABEL = 'Email address'
@@ -54,7 +55,7 @@ const schema = joi.object().keys({
   [ADDRESS_LINE_1_KEY]: joi.string().max(ADDRESS_LINE_1_LENGTH).label(ADDRESS_LINE_1_LABEL).required(),
   [ADDRESS_LINE_2_KEY]: joi.string().max(ADDRESS_LINE_2_LENGTH).label(ADDRESS_LINE_2_LABEL).required().allow(''),
   [TOWN_OR_CITY_KEY]: joi.string().max(TOWN_OR_CITY_LENGTH).label(TOWN_OR_CITY_LABEL).required(),
-  [POSTCODE_KEY]: joi.string().max(POSTCODE_LENGTH).label(POSTCODE_LABEL).required(),
+  [POSTCODE_KEY]: joi.string().max(POSTCODE_LENGTH).regex(POSTCODE_PATTERN).label(POSTCODE_LABEL).required(),
   [EMAIL_KEY]: joi.string().email().max(EMAIL_LENGTH).label(EMAIL_LABEL).required(),
   [PHONENUMBER_KEY]: joi.string().max(PHONENUMBER_LENGTH).label(PHONENUMBER_LABEL).required().allow('')
 }).options(schemaOptions).required()

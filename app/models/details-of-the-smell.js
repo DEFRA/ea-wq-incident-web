@@ -10,6 +10,7 @@ const DATE_OF_SMELL_LABEL = 'What date did you notice the smell'
 
 const TIME_OF_SMELL_KEY = 'timeOfSmell'
 const TIME_OF_SMELL_LABEL = 'What time of day did you notice the smell'
+const TIME_OF_SMELL_PATTERN = /^([0-9]{2}):([0-9]{2})$/
 const TIME_OF_SMELL_OPTIONS = {
   type: 'time',
   hint: {
@@ -20,7 +21,7 @@ const TIME_OF_SMELL_OPTIONS = {
 const schema = joi.object().keys({
   [SMELL_DESCRIPTION_KEY]: joi.string().max(SMELL_DESCRIPTION_LENGTH).label(SMELL_DESCRIPTION_LABEL).required().allow(''),
   [DATE_OF_SMELL_KEY]: joi.date().less('now').label(DATE_OF_SMELL_LABEL).required(),
-  [TIME_OF_SMELL_KEY]: joi.string().regex(/^([0-9]{2}):([0-9]{2})$/).label(TIME_OF_SMELL_LABEL).required()
+  [TIME_OF_SMELL_KEY]: joi.string().regex(TIME_OF_SMELL_PATTERN).label(TIME_OF_SMELL_LABEL).required()
 }).options(schemaOptions).required()
 
 class ViewModel extends BaseViewModel {

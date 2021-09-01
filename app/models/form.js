@@ -24,7 +24,8 @@ function mapErrors (err) {
 const schemaOptions = {
   messages: {
     'string.empty': '{{#label}} is required',
-    'string.max': '{{#label}} maximum length is {#limit}'
+    'string.max': '{{#label}} maximum length is {{#limit}}',
+    'string.pattern.base': '{{#label}} must follow the correct pattern'
   }
 }
 
