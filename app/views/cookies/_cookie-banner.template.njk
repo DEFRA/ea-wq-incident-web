@@ -1,15 +1,16 @@
 {% from "govuk/components/cookie-banner/macro.njk" import govukCookieBanner %}
 
+{% set heading = "Cookies on " + serviceName + " service" %}
 <noscript>
-{{ govukCookieBanner({
-  ariaLabel: "Cookies on Demo service",
-  messages: [
-    {
-      headingText: "Cookies on Demo service",
-      text: "We use cookies to make this service work and collect analytics information. To accept or reject cookies, turn on JavaScript in your browser settings or reload this page."
-    }
-  ]
-}) }}
+  {{ govukCookieBanner({
+    ariaLabel: heading,
+    messages: [
+      {
+        headingText: heading,
+        text: "We use cookies to make this service work and collect analytics information. To accept or reject cookies, turn on JavaScript in your browser settings or reload this page."
+      }
+    ]
+  }) }}
 </noscript>
 
 <div class="js-cookies-container" style="display:none">
@@ -27,11 +28,11 @@
   {% endset %}
 
   {{ govukCookieBanner({
-    ariaLabel: "Cookies on Demo service",
+    ariaLabel: heading,
     classes: "js-cookies-banner",
     messages: [
       {
-        headingText: "Cookies on Demo service",
+        headingText: heading,
         html: html,
         classes: "js-question-banner",
         actions: [
@@ -54,7 +55,8 @@
             href: "/cookies"
           }
         ]
-      },{
+      },
+      {
         html: acceptHtml,
         role: "alert",
         hidden: true,
