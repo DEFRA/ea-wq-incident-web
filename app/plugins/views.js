@@ -38,8 +38,7 @@ module.exports = {
       govukAssetPath: '/assets',
       serviceName: 'Walleys Quarry Incident Form',
       pageTitle: 'Walleys Quarry Incident Form - GOV.UK',
-      noIndex: true, // stop robot crawl by default
-      googleTagManagerKey: config.googleTagManagerKey
+      noIndex: true // stop robot crawl by default
     }
   }
 }

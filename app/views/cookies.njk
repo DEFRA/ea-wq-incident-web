@@ -1,0 +1,55 @@
+{% extends "two-thirds.njk" %}
+
+{% from "govuk/components/breadcrumbs/macro.njk" import govukBreadcrumbs %}
+{% from "govuk/components/table/macro.njk" import govukTable %}
+
+{% block beforeContent %}
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "/"
+      }]
+  }) }}
+{% endblock %}
+
+{% block twoThirds %}
+  <h2 class="govuk-heading-l">Cookies</h2>
+
+  <p class="govuk-body">Cookies are small files saved on your phone, tablet or computer when you visit a website.</p>
+
+  <p class="govuk-body">We use cookies to make this site work and collect information about how you use our service.</p>
+
+  <h3 class="govuk-heading-m">Essential cookies</h3>
+
+  <p class="govuk-body">Essential cookies keep your information secure while you use this service. We do not need to ask permission to use them.</p>
+
+  {{ govukTable({
+    caption: "Essential cookies",
+    captionClasses: "govuk-table__caption--m",
+    head: [
+      {
+        text: "Name"
+      },
+      {
+        text: "Purpose"
+      },
+      {
+        text: "Expires"
+      }
+    ],
+    rows: [
+      [
+        {
+          text: "session"
+        },
+        {
+          text: "Used to store your answers"
+        },
+        {
+          text: "When you close your browser"
+        }
+      ]
+    ]
+  }) }}
+{% endblock %}

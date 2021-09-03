@@ -35,7 +35,6 @@ container:
   sessionTimeoutInMinutes: 60
   port: 3000
   cookiePassword: passwordpasswordpasswordpasswordpassword
-  googleTagManagerKey: XXX
   protectiveMonitoringUrl:
   emailToAddress: test@test.com
   notifyApiKey:

@@ -1,9 +1,9 @@
 module.exports = {
   method: 'GET',
-  path: '/privacy-notice',
+  path: '/cookies',
   handler: {
     view: {
-      template: 'privacy-notice',
+      template: 'cookies',
       context: { noIndex: false }
     }
   }

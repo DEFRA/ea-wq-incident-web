@@ -18,4 +18,3 @@ test/performance/test-output/
 *.jtl
 # Generated views
 _layout.njk
-_cookie-banner.njk
