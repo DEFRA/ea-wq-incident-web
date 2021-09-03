@@ -1,13 +1,17 @@
-{% extends "_layout.njk" %}
+{% extends "two-thirds.njk" %}
 
-{% block content %}
-  <div class="govuk-width-container">
-    <div class="govuk-main-wrapper--auto-spacing">
-      <div class="govuk-grid-row">
-        <div class="govuk-grid-column-two-thirds">
-          <h1 class="govuk-heading-xl">Page not found</h1>
-        </div>
-      </div>
-    </div>
-  </div>
+{% from "govuk/components/breadcrumbs/macro.njk" import govukBreadcrumbs %}
+
+{% block beforeContent %}
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "/"
+      }]
+  }) }}
+{% endblock %}
+
+{% block twoThirds %}
+  <h1 class="govuk-heading-xl">Page not found</h1>
 {% endblock %}

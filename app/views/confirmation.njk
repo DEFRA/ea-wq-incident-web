@@ -1,24 +1,21 @@
-{% extends "_layout.njk" %}
+{% extends "two-thirds.njk" %}
+
 {% set mainClasses = "govuk-main-wrapper--auto-spacing" %}
 {% from "govuk/components/panel/macro.njk" import govukPanel %}
 
-{% block content %}
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      {{ govukPanel(model) }}
+{% block twoThirds %}
+  {{ govukPanel(model) }}
 
-      <p class="govuk-body">Thank you for your submission</p>
+  <p class="govuk-body">Thank you for your submission</p>
 
-      <h2 class="govuk-heading-m">What happens next</h2>
+  <h2 class="govuk-heading-m">What happens next</h2>
 
-      <p class="govuk-body">
-        We’ve sent your application to our customer services team.
-      </p>
-      <p class="govuk-body">
-        They will contact you either to confirm your registration, or to ask for more information.
-      </p>
-      
-      {#<pre><code>{{ complaint | dump(2) | safe }}</code></pre>#}
-    </div>
-  </div>
+  <p class="govuk-body">
+    We’ve sent your application to our customer services team.
+  </p>
+  <p class="govuk-body">
+    They will contact you either to confirm your registration, or to ask for more information.
+  </p>
+  
+  {#<pre><code>{{ complaint | dump(2) | safe }}</code></pre>#}
 {% endblock %}
