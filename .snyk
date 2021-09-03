@@ -4,7 +4,7 @@ version: v1.22.1
 ignore:
   SNYK-JS-AXIOS-1579269:
     - '*':
-        reason: None Given
+        reason: No fix available
         expires: 2021-10-03T11:15:16.491Z
         created: 2021-09-03T11:15:16.505Z
 patch: {}
