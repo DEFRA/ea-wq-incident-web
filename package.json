@@ -20,7 +20,7 @@
   "contributors": [],
   "license": "OGL-UK-3.0",
   "dependencies": {
-    "@hapi/hapi": "20.x",
+    "@hapi/hapi": "^20.1.5",
     "@hapi/hoek": "^9.2.0",
     "@hapi/inert": "^6.0.4",
     "@hapi/vision": "^6.1.0",
