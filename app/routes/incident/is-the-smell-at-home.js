@@ -1,5 +1,5 @@
 const sessionHandler = require('../../services/session-handler')
-const { schema, ViewModel } = require('../../models/is-the-smell-at-home')
+const { schema, ViewModel, AT_HOME_KEY } = require('../../models/is-the-smell-at-home')
 
 module.exports = [
   {
@@ -18,8 +18,8 @@ module.exports = [
     handler: (request, h) => {
       sessionHandler.update(request, 'complaint', request.payload)
 
-      const { smellAtHome } = request.payload
-      const next = smellAtHome === 'No' ? '/where-is-the-smell' : '/details-of-the-smell'
+      const { [AT_HOME_KEY]: atHome } = request.payload
+      const next = atHome === 'No' ? '/where-is-the-smell' : '/details-of-the-smell'
       return h.redirect(next)
     },
     options: {

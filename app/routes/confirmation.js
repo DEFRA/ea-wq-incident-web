@@ -4,7 +4,7 @@ const { sendEmail } = require('../services/notify')
 const { schema: aboutYouSchema } = require('../models/about-you')
 const { schema: aboutSmellSchema } = require('../models/about-the-smell')
 const { schema: isSmellAtHomeSchema } = require('../models/is-the-smell-at-home')
-const { schema: whereIsSmellSchema, SMELL_LOCATION_KEY } = require('../models/where-is-the-smell')
+const { schema: whereIsSmellSchema, LOCATION_KEY } = require('../models/where-is-the-smell')
 const { schema: detailsOfSmellSchema } = require('../models/details-of-the-smell')
 
 const schema = joi.object().required()
@@ -17,7 +17,7 @@ const schema = joi.object().required()
   // so we need to accomodate for that here by marking
   // the key as optinoal and applying a default
   .keys({
-    [SMELL_LOCATION_KEY]: joi.optional().default('')
+    [LOCATION_KEY]: joi.optional().default('')
   })
 
 function ViewModel (complaint) {

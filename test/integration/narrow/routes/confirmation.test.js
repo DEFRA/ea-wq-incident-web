@@ -45,19 +45,19 @@ describe('Home test', () => {
     mockSession = {
       firstName: 'Mr',
       lastName: 'Test',
-      address: 'Institute of test',
-      addressLine1: '345',
+      addressLine1: 'Institute of test',
       addressLine2: '',
       townOrCity: 'Teston',
+      county: 'Testshire',
       postcode: 'T3 5TR',
       email: 'tester@test.com',
       phonenumber: '1471',
-      smellStrength: 'strong smell that may make your hair or clothes smell',
-      smellAtHome: 'No',
-      smellLocation: 'elsewhere',
-      smellDescription: 'bad',
-      dateOfSmell: '2021-08-25T00:00:00.000Z',
-      timeOfSmell: '14:35'
+      strength: 'strong smell that may make your hair or clothes smell',
+      atHome: 'No',
+      location: 'elsewhere',
+      description: 'bad',
+      date: '2021-08-25T00:00:00.000Z',
+      time: '14:35'
     }
     const response = await server.inject(options)
     expect(response.statusCode).toBe(200)

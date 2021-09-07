@@ -18,10 +18,10 @@
         classes: "govuk-fieldset__legend--m"
       }
     }) %}
-      {{ govukInput(fields.address) }}
       {{ govukInput(fields.addressLine1) }}
       {{ govukInput(fields.addressLine2) }}
       {{ govukInput(fields.townOrCity) }}
+      {{ govukInput(fields.county) }}
       {{ govukInput(fields.postcode) }}
     {% endcall %}
     {{ govukInput(fields.email) }}

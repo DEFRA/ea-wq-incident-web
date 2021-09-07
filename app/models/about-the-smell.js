@@ -1,9 +1,9 @@
 const joi = require('joi')
 const { BaseViewModel, schemaOptions } = require('./form')
 
-const SMELL_STRENGTH_KEY = 'smellStrength'
-const SMELL_STRENGTH_LABEL = 'How strong is the smell'
-const SMELL_STRENGTH_ITEMS = [
+const STRENGTH_KEY = 'strength'
+const STRENGTH_LABEL = 'How strong is the smell'
+const STRENGTH_ITEMS = [
   'no smell',
   'very weak smell',
   'distinct smell that may make your hair or clothes smell',
@@ -14,27 +14,27 @@ const SMELL_STRENGTH_ITEMS = [
 ]
 
 const schema = joi.object().keys({
-  [SMELL_STRENGTH_KEY]: joi.string().label(SMELL_STRENGTH_LABEL).allow(...SMELL_STRENGTH_ITEMS).required()
+  [STRENGTH_KEY]: joi.string().label(STRENGTH_LABEL).allow(...STRENGTH_ITEMS).required()
 }).options(schemaOptions).required()
 
 class ViewModel extends BaseViewModel {
   constructor (data, err) {
     super(data, err)
 
-    const smellStrengthOptions = {
-      items: SMELL_STRENGTH_ITEMS.map(value => ({
+    const strengthOptions = {
+      items: STRENGTH_ITEMS.map(value => ({
         text: value,
         value: value,
-        checked: value === this.data[SMELL_STRENGTH_KEY]
+        checked: value === this.data[STRENGTH_KEY]
       })),
       fieldset: {
         legend: {
-          text: SMELL_STRENGTH_LABEL
+          text: STRENGTH_LABEL
         }
       }
     }
 
-    this.addField(SMELL_STRENGTH_KEY, SMELL_STRENGTH_LABEL, null, smellStrengthOptions)
+    this.addField(STRENGTH_KEY, STRENGTH_LABEL, null, strengthOptions)
   }
 }
 

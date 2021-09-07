@@ -22,9 +22,9 @@ describe('Experience test', () => {
 
   test('GET /details-of-the-smell route returns 200', async () => {
     mockSession = {
-      smellDescription: 'test description',
-      dateOfSmell: '2017-08-25T00:00:00.000Z',
-      timeOfSmell: '14:35'
+      description: 'test description',
+      date: '2017-08-25T00:00:00.000Z',
+      time: '14:35'
     }
     const options = {
       method: 'GET',

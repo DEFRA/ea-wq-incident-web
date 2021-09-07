@@ -25,7 +25,7 @@ describe('Feedback test', () => {
       method: 'POST',
       url: '/is-the-smell-at-home',
       payload: {
-        smellAtHome: 'No'
+        atHome: 'No'
       }
     }
 
@@ -38,7 +38,7 @@ describe('Feedback test', () => {
       method: 'POST',
       url: '/is-the-smell-at-home',
       payload: {
-        smellAtHome: 'Yes'
+        atHome: 'Yes'
       }
     }
 
