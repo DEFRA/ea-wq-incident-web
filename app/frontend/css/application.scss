@@ -1,12 +1,8 @@
 $govuk-assets-path: "~govuk-frontend/govuk/assets/";
 @import "~govuk-frontend/govuk/all";
 
-.nojs-hidden {
+body:not(.js-enabled) .nojs-hidden {
   display: none;
-}
-
-.js-enabled .nojs-hidden {
-  display: block;
 }
 
 .govuk-prose-scope {
