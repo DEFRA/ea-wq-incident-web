@@ -1,4 +1,4 @@
-{% extends "two-thirds.njk" %}
+{% extends "two-thirds.html" %}
 
 {% from "govuk/components/breadcrumbs/macro.njk" import govukBreadcrumbs %}
 
@@ -13,5 +13,6 @@
 {% endblock %}
 
 {% block twoThirds %}
-  <h1 class="govuk-heading-xl">Page not found</h1>
+  <h1 class="govuk-heading-xl">Sorry, there is a problem with the service</h1>
+  <p class="govuk-body">Try again later.</p>
 {% endblock %}
