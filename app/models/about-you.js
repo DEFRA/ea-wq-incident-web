@@ -14,7 +14,7 @@ const ADDRESS_LINE_1_LABEL = 'House name or number'
 const ADDRESS_LINE_1_LENGTH = 255
 
 const ADDRESS_LINE_2_KEY = 'addressLine2'
-const ADDRESS_LINE_2_LABEL = 'Address line 2'
+const ADDRESS_LINE_2_LABEL = 'Street name'
 const ADDRESS_LINE_2_LENGTH = 255
 
 const TOWN_OR_CITY_KEY = 'townOrCity'
@@ -52,7 +52,7 @@ const schema = joi.object().keys({
   [FIRST_NAME_KEY]: joi.string().max(FIRST_NAME_LENGTH).label(FIRST_NAME_LABEL).required(),
   [LAST_NAME_KEY]: joi.string().max(LAST_NAME_LENGTH).label(LAST_NAME_LABEL).required(),
   [ADDRESS_LINE_1_KEY]: joi.string().max(ADDRESS_LINE_1_LENGTH).label(ADDRESS_LINE_1_LABEL).required(),
-  [ADDRESS_LINE_2_KEY]: joi.string().max(ADDRESS_LINE_2_LENGTH).label(ADDRESS_LINE_2_LABEL).required().allow(''),
+  [ADDRESS_LINE_2_KEY]: joi.string().max(ADDRESS_LINE_2_LENGTH).label(ADDRESS_LINE_2_LABEL).required(),
   [TOWN_OR_CITY_KEY]: joi.string().max(TOWN_OR_CITY_LENGTH).label(TOWN_OR_CITY_LABEL).required(),
   [COUNTY_KEY]: joi.string().max(COUNTY_LENGTH).label(COUNTY_LABEL).required(),
   [POSTCODE_KEY]: joi.string().max(POSTCODE_LENGTH).regex(POSTCODE_PATTERN).label(POSTCODE_LABEL).required(),
@@ -67,7 +67,7 @@ class ViewModel extends BaseViewModel {
     this.addField(FIRST_NAME_KEY, FIRST_NAME_LABEL, 'govuk-input--width-10')
     this.addField(LAST_NAME_KEY, LAST_NAME_LABEL, 'govuk-input--width-10')
     this.addField(ADDRESS_LINE_1_KEY, ADDRESS_LINE_1_LABEL, 'govuk-input--width-10')
-    this.addField(ADDRESS_LINE_2_KEY, `${ADDRESS_LINE_2_LABEL} (optional)`, 'govuk-input--width-20')
+    this.addField(ADDRESS_LINE_2_KEY, ADDRESS_LINE_2_LABEL, 'govuk-input--width-20')
     this.addField(TOWN_OR_CITY_KEY, TOWN_OR_CITY_LABEL, 'govuk-input--width-20')
     this.addField(COUNTY_KEY, COUNTY_LABEL, 'govuk-input--width-10')
     this.addField(POSTCODE_KEY, POSTCODE_LABEL, 'govuk-input--width-10')
