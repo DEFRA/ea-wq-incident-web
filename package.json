@@ -1,6 +1,6 @@
 {
   "name": "ea-incident-form-web",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "description-of-project-goes-here",
   "homepage": "https://github.com/DEFRA/ffc-template-node",
   "main": "app/index.js",
