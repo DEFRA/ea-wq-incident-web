@@ -2,14 +2,14 @@ const joi = require('joi')
 const { BaseViewModel, schemaOptions } = require('./form')
 
 const DESCRIPTION_KEY = 'description'
-const DESCRIPTION_LABEL = 'How would you describe the smell'
+const DESCRIPTION_LABEL = 'How would you describe the smell?'
 const DESCRIPTION_LENGTH = 400
 
 const DATE_KEY = 'date'
-const DATE_LABEL = 'What date did you notice the smell'
+const DATE_LABEL = 'What date did you notice the smell?'
 
 const TIME_KEY = 'time'
-const TIME_LABEL = 'What time of day did you notice the smell'
+const TIME_LABEL = 'What time of day did you notice the smell?'
 const TIME_PATTERN = /^([0-9]{2}):([0-9]{2})$/
 const TIME_OPTIONS = {
   type: 'time',

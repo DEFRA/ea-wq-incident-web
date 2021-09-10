@@ -2,7 +2,7 @@ const joi = require('joi')
 const { BaseViewModel, schemaOptions } = require('./form')
 
 const STRENGTH_KEY = 'strength'
-const STRENGTH_LABEL = 'How strong is the smell'
+const STRENGTH_LABEL = 'How strong is the smell?'
 const STRENGTH_ITEMS = [
   'no smell',
   'very weak smell',

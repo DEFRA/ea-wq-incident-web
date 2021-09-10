@@ -2,7 +2,7 @@ const joi = require('joi')
 const { BaseViewModel, schemaOptions } = require('./form')
 
 const LOCATION_KEY = 'location'
-const LOCATION_LABEL = 'Where did you notice this smell'
+const LOCATION_LABEL = 'Where did you notice this smell?'
 const LOCATION_LENGTH = 400
 const LOCATION_OPTIONS = {
   hint: {

@@ -2,7 +2,7 @@ const joi = require('joi')
 const { BaseViewModel, schemaOptions } = require('./form')
 
 const AT_HOME_KEY = 'atHome'
-const AT_HOME_LABEL = 'Are you experiencing this smell at your home address'
+const AT_HOME_LABEL = 'Are you experiencing this smell at your home address?'
 const AT_HOME_ITEMS = ['Yes', 'No']
 
 const schema = joi.object().keys({
