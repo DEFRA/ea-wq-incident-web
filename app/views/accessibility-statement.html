@@ -1,6 +1,18 @@
 {% extends "two-thirds.html" %}
 
+{% from "govuk/components/breadcrumbs/macro.njk" import govukBreadcrumbs %}
+
 {% set pageTitle = "Accessibility statement for the " + serviceName + " service" %}
+
+{% block beforeContent %}
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "/"
+      }]
+  }) }}
+{% endblock %}
 
 {% block content %}
 <div id="home-page">
