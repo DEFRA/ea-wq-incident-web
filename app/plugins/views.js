@@ -36,8 +36,8 @@ module.exports = {
       appVersion: version,
       assetPath: '/static',
       govukAssetPath: '/assets',
-      serviceName: 'Walleys Quarry Incident Form',
-      pageTitle: 'Walleys Quarry Incident Form - GOV.UK',
+      serviceName: 'Report a smell at Walleys Quarry',
+      pageTitle: 'Report a smell at Walleys Quarry - GOV.UK',
       noIndex: true // stop robot crawl by default
     }
   }
