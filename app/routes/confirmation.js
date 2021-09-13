@@ -15,20 +15,10 @@ const schema = joi.object().required()
   .concat(detailsOfSmellSchema)
   // The smell location page may not have been visited
   // so we need to accomodate for that here by marking
-  // the key as optinoal and applying a default
+  // the key as optional and applying a default
   .keys({
     [LOCATION_KEY]: joi.optional().default('')
   })
-
-function ViewModel (complaint) {
-  // Constructor function to create logic dependent nunjucks page
-  this.model = {
-    titleText: 'Application complete',
-    html: 'Your reference number<br><strong>EA12345</strong>'
-  }
-
-  this.complaint = complaint
-}
 
 module.exports = {
   method: 'GET',
@@ -56,7 +46,7 @@ module.exports = {
       // Clear the session state
       sessionHandler.reset(request)
 
-      return h.view('confirmation', new ViewModel(value))
+      return h.view('confirmation')
     }
   }
 }
