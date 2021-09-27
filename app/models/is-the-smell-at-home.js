@@ -1,14 +1,17 @@
 const joi = require('joi')
-const { BaseViewModel, schemaOptions } = require('./form')
+const { BaseViewModel, baseMessages } = require('./form')
 
 const AT_HOME_KEY = 'atHome'
 const AT_HOME_LABEL = 'Are you experiencing this smell at your home address?'
 const AT_HOME_ITEMS = ['Yes', 'No']
 const AT_HOME_ITEM_LABELS = ['Yes - the smell is at home', 'No']
+const AT_HOME_MESSAGES = {
+  'any.required': 'Select yes if you are experiencing this smell at home'
+}
 
 const schema = joi.object().keys({
-  [AT_HOME_KEY]: joi.string().label(AT_HOME_LABEL).allow(...AT_HOME_ITEMS).required()
-}).options(schemaOptions).required()
+  [AT_HOME_KEY]: joi.string().label(AT_HOME_LABEL).allow(...AT_HOME_ITEMS).required().messages(AT_HOME_MESSAGES)
+}).messages(baseMessages).required()
 
 class ViewModel extends BaseViewModel {
   constructor (data, err) {

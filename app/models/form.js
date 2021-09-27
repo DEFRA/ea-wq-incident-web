@@ -23,12 +23,8 @@ function mapErrors (err) {
   return []
 }
 
-const schemaOptions = {
-  messages: {
-    'string.empty': '{{#label}} is required',
-    'string.max': '{{#label}} maximum length is {{#limit}}',
-    'string.pattern.base': '{{#label}} must follow the correct pattern'
-  }
+const baseMessages = {
+  'string.max': '{{#label}} must be {{#limit}} characters or fewer'
 }
 
 class BaseViewModel {
@@ -61,4 +57,4 @@ class BaseViewModel {
   }
 }
 
-module.exports = { mapErrors, schemaOptions, BaseViewModel }
+module.exports = { mapErrors, baseMessages, BaseViewModel }

@@ -10,13 +10,13 @@ async function createServer () {
       validate: {
         options: {
           abortEarly: false,
-          stripUnknown: true
-          // errors: {
-          //   wrap: {
-          //     label: false,
-          //     array: false
-          //   }
-          // }
+          stripUnknown: true,
+          errors: {
+            wrap: {
+              label: false,
+              array: false
+            }
+          }
         }
       }
     },

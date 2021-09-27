@@ -1,5 +1,5 @@
 const joi = require('joi')
-const { BaseViewModel, schemaOptions } = require('./form')
+const { BaseViewModel, baseMessages } = require('./form')
 
 const STRENGTH_KEY = 'strength'
 const STRENGTH_LABEL = 'How strong is the smell?'
@@ -12,10 +12,13 @@ const STRENGTH_ITEMS = [
   'Overwhelming smell (a smell that makes you want to leave the area)',
   'Intolerable smell (a smell that forces you to hold your breath and leave the area)'
 ]
+const STRENGTH_MESSAGES = {
+  'any.required': 'Select how strong the smell is'
+}
 
 const schema = joi.object().keys({
-  [STRENGTH_KEY]: joi.string().label(STRENGTH_LABEL).allow(...STRENGTH_ITEMS).required()
-}).options(schemaOptions).required()
+  [STRENGTH_KEY]: joi.string().label(STRENGTH_LABEL).allow(...STRENGTH_ITEMS).required().messages(STRENGTH_MESSAGES)
+}).messages(baseMessages).required()
 
 class ViewModel extends BaseViewModel {
   constructor (data, err) {

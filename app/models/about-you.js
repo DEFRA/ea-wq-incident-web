@@ -1,17 +1,26 @@
 const joi = require('joi')
-const { BaseViewModel, schemaOptions } = require('./form')
+const { BaseViewModel, baseMessages } = require('./form')
 
 const FIRST_NAME_KEY = 'firstName'
 const FIRST_NAME_LABEL = 'First name'
 const FIRST_NAME_LENGTH = 60
+const FIRST_NAME_MESSAGES = {
+  'string.empty': `Enter your ${FIRST_NAME_LABEL.toLowerCase()}`
+}
 
 const LAST_NAME_KEY = 'lastName'
 const LAST_NAME_LABEL = 'Last name'
 const LAST_NAME_LENGTH = 60
+const LAST_NAME_MESSAGES = {
+  'string.empty': `Enter your ${LAST_NAME_LABEL.toLowerCase()}`
+}
 
 const ADDRESS_LINE_1_KEY = 'addressLine1'
 const ADDRESS_LINE_1_LABEL = 'Address line 1'
 const ADDRESS_LINE_1_LENGTH = 255
+const ADDRESS_LINE_1_MESSAGES = {
+  'string.empty': `Enter an ${ADDRESS_LINE_1_LABEL.toLowerCase()}`
+}
 
 const ADDRESS_LINE_2_KEY = 'addressLine2'
 const ADDRESS_LINE_2_LABEL = 'Address line 2'
@@ -20,15 +29,25 @@ const ADDRESS_LINE_2_LENGTH = 255
 const TOWN_OR_CITY_KEY = 'townOrCity'
 const TOWN_OR_CITY_LABEL = 'Town or city'
 const TOWN_OR_CITY_LENGTH = 35
+const TOWN_OR_CITY_MESSAGES = {
+  'string.empty': `Enter a ${TOWN_OR_CITY_LABEL.toLowerCase()}`
+}
 
 const COUNTY_KEY = 'county'
 const COUNTY_LABEL = 'County'
 const COUNTY_LENGTH = 35
+const COUNTY_MESSAGES = {
+  'string.empty': `Enter a ${COUNTY_LABEL.toLowerCase()}`
+}
 
 const POSTCODE_KEY = 'postcode'
 const POSTCODE_LABEL = 'Postcode'
 const POSTCODE_LENGTH = 10
-const POSTCODE_PATTERN = /^[A-Z]{1,2}[0-9][0-9A-Z]?\s*[0-9][A-Z]{2}/i
+const POSTCODE_PATTERN = /^[A-Z]{1,2}\d[A-Z\d]? ?\d[A-Z]{2}$/i
+const POSTCODE_MESSAGES = {
+  'string.empty': `Enter a ${POSTCODE_LABEL.toLowerCase()}`,
+  'string.pattern.base': 'Enter a real postcode'
+}
 
 const EMAIL_KEY = 'email'
 const EMAIL_LABEL = 'Email address'
@@ -36,7 +55,12 @@ const EMAIL_LENGTH = 100
 const EMAIL_OPTIONS = {
   hint: {
     text: 'To receive your reference number'
-  }
+  },
+  type: 'email'
+}
+const EMAIL_MESSAGES = {
+  'string.empty': `Enter an ${EMAIL_LABEL.toLowerCase()}`,
+  'string.email': 'Enter an email address in the correct format, like name@example.com'
 }
 
 const PHONENUMBER_KEY = 'phonenumber'
@@ -49,16 +73,16 @@ const PHONENUMBER_OPTIONS = {
 }
 
 const schema = joi.object().keys({
-  [FIRST_NAME_KEY]: joi.string().max(FIRST_NAME_LENGTH).label(FIRST_NAME_LABEL).trim().required(),
-  [LAST_NAME_KEY]: joi.string().max(LAST_NAME_LENGTH).label(LAST_NAME_LABEL).trim().required(),
-  [ADDRESS_LINE_1_KEY]: joi.string().max(ADDRESS_LINE_1_LENGTH).label(ADDRESS_LINE_1_LABEL).trim().required(),
+  [FIRST_NAME_KEY]: joi.string().max(FIRST_NAME_LENGTH).label(FIRST_NAME_LABEL).trim().required().messages(FIRST_NAME_MESSAGES),
+  [LAST_NAME_KEY]: joi.string().max(LAST_NAME_LENGTH).label(LAST_NAME_LABEL).trim().required().messages(LAST_NAME_MESSAGES),
+  [ADDRESS_LINE_1_KEY]: joi.string().max(ADDRESS_LINE_1_LENGTH).label(ADDRESS_LINE_1_LABEL).trim().required().messages(ADDRESS_LINE_1_MESSAGES),
   [ADDRESS_LINE_2_KEY]: joi.string().max(ADDRESS_LINE_2_LENGTH).label(ADDRESS_LINE_2_LABEL).trim().required().allow(''),
-  [TOWN_OR_CITY_KEY]: joi.string().max(TOWN_OR_CITY_LENGTH).label(TOWN_OR_CITY_LABEL).trim().required(),
-  [COUNTY_KEY]: joi.string().max(COUNTY_LENGTH).label(COUNTY_LABEL).trim().required(),
-  [POSTCODE_KEY]: joi.string().max(POSTCODE_LENGTH).regex(POSTCODE_PATTERN).trim().label(POSTCODE_LABEL).required(),
-  [EMAIL_KEY]: joi.string().email().max(EMAIL_LENGTH).label(EMAIL_LABEL).trim().required(),
+  [TOWN_OR_CITY_KEY]: joi.string().max(TOWN_OR_CITY_LENGTH).label(TOWN_OR_CITY_LABEL).trim().required().messages(TOWN_OR_CITY_MESSAGES),
+  [COUNTY_KEY]: joi.string().max(COUNTY_LENGTH).label(COUNTY_LABEL).trim().required().messages(COUNTY_MESSAGES),
+  [POSTCODE_KEY]: joi.string().max(POSTCODE_LENGTH).regex(POSTCODE_PATTERN).trim().label(POSTCODE_LABEL).required().messages(POSTCODE_MESSAGES),
+  [EMAIL_KEY]: joi.string().email().max(EMAIL_LENGTH).label(EMAIL_LABEL).trim().required().messages(EMAIL_MESSAGES),
   [PHONENUMBER_KEY]: joi.string().max(PHONENUMBER_LENGTH).label(PHONENUMBER_LABEL).trim().required().allow('')
-}).options(schemaOptions).required()
+}).messages(baseMessages).required()
 
 class ViewModel extends BaseViewModel {
   constructor (data, err) {

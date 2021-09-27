@@ -1,5 +1,5 @@
 const joi = require('joi')
-const { BaseViewModel, schemaOptions } = require('./form')
+const { BaseViewModel, baseMessages } = require('./form')
 
 const LOCATION_KEY = 'location'
 const LOCATION_LABEL = 'Where did you notice this smell?'
@@ -9,10 +9,14 @@ const LOCATION_OPTIONS = {
     text: 'Give as much detail as possible, for example the street name, postcode, description of the location'
   }
 }
+const LOCATION_MESSAGES = {
+  'string.empty': 'Enter where you noticed this smell',
+  'string.max': `${LOCATION_LABEL.slice(0, -1)} must be ${LOCATION_LENGTH} characters or fewer`
+}
 
 const schema = joi.object().keys({
-  [LOCATION_KEY]: joi.string().max(LOCATION_LENGTH).label(LOCATION_LABEL).trim().required()
-}).options(schemaOptions).required()
+  [LOCATION_KEY]: joi.string().max(LOCATION_LENGTH).label(LOCATION_LABEL).trim().required().messages(LOCATION_MESSAGES)
+}).messages(baseMessages).required()
 
 class ViewModel extends BaseViewModel {
   constructor (data, err) {
