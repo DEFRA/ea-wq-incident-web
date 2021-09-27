@@ -4,6 +4,9 @@ const { BaseViewModel, baseMessages } = require('./form')
 const DESCRIPTION_KEY = 'description'
 const DESCRIPTION_LABEL = 'How would you describe the smell?'
 const DESCRIPTION_LENGTH = 400
+const DESCRIPTION_OPTIONS = {
+  maxlength: DESCRIPTION_LENGTH
+}
 const DESCRIPTION_MESSAGES = {
   'string.max': `${DESCRIPTION_LABEL.slice(0, -1)} must be ${DESCRIPTION_LENGTH} characters or fewer`
 }
@@ -54,7 +57,7 @@ class ViewModel extends BaseViewModel {
       type: 'date'
     }
 
-    this.addField(DESCRIPTION_KEY, `${DESCRIPTION_LABEL} (optional)`)
+    this.addField(DESCRIPTION_KEY, `${DESCRIPTION_LABEL} (optional)`, '', DESCRIPTION_OPTIONS)
     this.addField(DATE_KEY, DATE_LABEL, 'govuk-input--width-10', DATE_OPTIONS)
     this.addField(TIME_KEY, TIME_LABEL, 'govuk-input--width-5', TIME_OPTIONS)
   }

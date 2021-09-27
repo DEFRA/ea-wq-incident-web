@@ -5,6 +5,7 @@ const LOCATION_KEY = 'location'
 const LOCATION_LABEL = 'Where did you notice this smell?'
 const LOCATION_LENGTH = 400
 const LOCATION_OPTIONS = {
+  maxlength: LOCATION_LENGTH,
   hint: {
     text: 'Give as much detail as possible, for example the street name, postcode, description of the location'
   }

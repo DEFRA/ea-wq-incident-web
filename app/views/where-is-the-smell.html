@@ -1,9 +1,9 @@
 {% extends "form.html" %}
 
-{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+{% from "govuk/components/character-count/macro.njk" import govukCharacterCount %}
 
 {% block form %}
   <div id="where-is-the-smell">
-    {{ govukTextarea(fields.location) }}
+    {{ govukCharacterCount(fields.location) }}
   </div>
 {% endblock %}

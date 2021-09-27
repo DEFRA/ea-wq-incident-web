@@ -1,7 +1,7 @@
 {% extends "form.html" %}
 
 {% from "govuk/components/input/macro.njk" import govukInput %}
-{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+{% from "govuk/components/character-count/macro.njk" import govukCharacterCount %}
 
 {% set formSubmitButtonText = "Submit" %}
 
@@ -11,7 +11,7 @@
 
 {% block form %}
   <div id="details-of-the-smell">
-    {{ govukTextarea(fields.description) }}
+    {{ govukCharacterCount(fields.description) }}
     {{ govukInput(fields.date) }}
     {{ govukInput(fields.time) }}
   </div>
