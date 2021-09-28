@@ -6,7 +6,7 @@ module.exports = [
     method: 'GET',
     path: '/is-the-smell-at-home',
     handler: (request, h) => {
-      const data = sessionHandler.get(request, 'complaint')
+      const data = sessionHandler.get(request, 'incident')
       const model = new ViewModel(data)
 
       return h.view('is-the-smell-at-home', model)
@@ -16,7 +16,7 @@ module.exports = [
     method: 'POST',
     path: '/is-the-smell-at-home',
     handler: (request, h) => {
-      sessionHandler.update(request, 'complaint', request.payload)
+      sessionHandler.update(request, 'incident', request.payload)
 
       const { [AT_HOME_KEY]: atHome } = request.payload
       const next = atHome === 'No' ? '/where-is-the-smell' : '/details-of-the-smell'

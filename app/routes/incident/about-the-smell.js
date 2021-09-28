@@ -6,7 +6,7 @@ module.exports = [
     method: 'GET',
     path: '/about-the-smell',
     handler: (request, h) => {
-      const data = sessionHandler.get(request, 'complaint')
+      const data = sessionHandler.get(request, 'incident')
       const model = new ViewModel(data)
 
       return h.view('about-the-smell', model)
@@ -16,7 +16,7 @@ module.exports = [
     method: 'POST',
     path: '/about-the-smell',
     handler: (request, h) => {
-      sessionHandler.update(request, 'complaint', request.payload)
+      sessionHandler.update(request, 'incident', request.payload)
 
       return h.redirect('/is-the-smell-at-home')
     },

@@ -25,26 +25,12 @@ module.exports = {
   path: '/confirmation',
   options: {
     handler: async (request, h) => {
-      const complaint = sessionHandler.get(request, 'complaint')
+      const incidentSent = sessionHandler.flash(request, 'incidentSent')
 
-      // Validate config
-      const result = schema.validate(complaint, {
-        abortEarly: false
-      })
-
-      // Return to the start if the data is invalid
-      if (result.error) {
+      // Return to the start if incidentSent flag not present
+      if (!incidentSent.length) {
         return h.redirect('/')
       }
-
-      // Use the joi validated value
-      const value = result.value
-
-      // Send the email
-      await sendEmail(value)
-
-      // Clear the session state
-      sessionHandler.reset(request)
 
       return h.view('confirmation')
     }

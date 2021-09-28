@@ -21,5 +21,8 @@ module.exports = {
   },
   reset: function (request) {
     request.yar.reset()
+  },
+  flash: function (request, ...rest) {
+    return request.yar.flash(...rest)
   }
 }
