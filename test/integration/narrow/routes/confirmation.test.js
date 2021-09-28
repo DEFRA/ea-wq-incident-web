@@ -2,16 +2,12 @@ describe('Home test', () => {
   let createServer
   let server
   let sessionHandler
-  let mockSession = {}
-  let notify
+  let mockFlash = null
 
   function createMocks () {
     jest.mock('../../../../app/services/session-handler')
     sessionHandler = require('../../../../app/services/session-handler')
-    sessionHandler.get.mockImplementation(() => mockSession)
-    jest.mock('../../../../app/services/notify')
-    notify = require('../../../../app/services/notify')
-    notify.sendEmail.mockImplementation(jest.fn().mockResolvedValue({ result: true }))
+    sessionHandler.flash.mockImplementation(() => mockFlash)
   }
 
   beforeAll(async () => {
@@ -25,7 +21,7 @@ describe('Home test', () => {
   })
 
   test('GET /confirmation without valid session data redirects to /', async () => {
-    mockSession = {}
+    mockFlash = null
     const options = {
       method: 'GET',
       url: '/confirmation'
@@ -42,23 +38,8 @@ describe('Home test', () => {
       url: '/confirmation'
     }
 
-    mockSession = {
-      firstName: 'Mr',
-      lastName: 'Test',
-      addressLine1: 'Institute of test',
-      addressLine2: '',
-      townOrCity: 'Teston',
-      county: 'Testshire',
-      postcode: 'T3 5TR',
-      email: 'tester@test.com',
-      phonenumber: '1471',
-      strength: 'strong smell that may make your hair or clothes smell',
-      atHome: 'No',
-      location: 'elsewhere',
-      description: 'bad',
-      date: '2021-08-25T00:00:00.000Z',
-      time: '14:35'
-    }
+    mockFlash = [true]
+
     const response = await server.inject(options)
     expect(response.statusCode).toBe(200)
   })
