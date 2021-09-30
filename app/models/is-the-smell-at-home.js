@@ -4,7 +4,7 @@ const { BaseViewModel, baseMessages } = require('./form')
 const AT_HOME_KEY = 'atHome'
 const AT_HOME_LABEL = 'Are you experiencing this smell at your home address?'
 const AT_HOME_ITEMS = ['Yes', 'No']
-const AT_HOME_ITEM_LABELS = ['Yes - the smell is at home', 'No']
+const AT_HOME_ITEM_LABELS = ['Yes - I am experiencing the smell from my home address', 'No']
 const AT_HOME_MESSAGES = {
   'any.required': 'Select yes if you are experiencing this smell at home'
 }
