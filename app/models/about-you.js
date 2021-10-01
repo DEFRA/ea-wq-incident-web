@@ -68,7 +68,7 @@ const PHONENUMBER_LABEL = 'Phone number'
 const PHONENUMBER_LENGTH = 20
 const PHONENUMBER_OPTIONS = {
   hint: {
-    text: 'As an alternative to an email address in case we need to contact you'
+    text: 'In addition to your email address in case we need to contact you'
   }
 }
 
