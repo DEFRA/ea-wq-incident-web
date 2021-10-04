@@ -54,10 +54,20 @@ class ViewModel extends BaseViewModel {
 
     const date = this.data[DATE_KEY]
     const dateOptions = {
-      items: dateItems.map(day => {
+      items: dateItems.map((day, i) => {
         const value = day.format('YYYY-MM-DD')
+        let text
+
+        if (i === 0) {
+          text = 'Today'
+        } else if (i === 1) {
+          text = 'Yesterday'
+        } else {
+          text = day.format('dddd D MMMM')
+        }
+
         return {
-          text: day.format('dddd D MMM YYYY'),
+          text,
           value,
           checked: date ? value === dayjs(date).format('YYYY-MM-DD') : false
         }
@@ -79,11 +89,18 @@ class ViewModel extends BaseViewModel {
 
     if (hourError && minuteError) {
       const text = TIME_MESSAGES['string.empty']
+
+      // Set a combined error message
       errorMessage = { text }
+
+      // Remove any individual messages from the errors list
       this.errorList = this.errorList
         .filter(e => e.path !== 'hour' && e.path !== 'minute')
+
+      // And replace with a combined message
       this.errorList.push({ path: 'time', text, href: '#hour', type: 'custom' })
     } else if (hourError || minuteError) {
+      // Set the error message to the individual error (prioritising "hour" errors)
       errorMessage = hourError || minuteError
     }
 
