@@ -4,6 +4,10 @@ const { BaseViewModel, baseMessages } = require('./form')
 const FIRST_NAME_KEY = 'firstName'
 const FIRST_NAME_LABEL = 'First name'
 const FIRST_NAME_LENGTH = 60
+const FIRST_NAME_OPTIONS = {
+  autocomplete: 'given-name',
+  spellcheck: false
+}
 const FIRST_NAME_MESSAGES = {
   'string.empty': `Enter your ${FIRST_NAME_LABEL.toLowerCase()}`
 }
@@ -11,6 +15,10 @@ const FIRST_NAME_MESSAGES = {
 const LAST_NAME_KEY = 'lastName'
 const LAST_NAME_LABEL = 'Last name'
 const LAST_NAME_LENGTH = 60
+const LAST_NAME_OPTIONS = {
+  autocomplete: 'family-name',
+  spellcheck: false
+}
 const LAST_NAME_MESSAGES = {
   'string.empty': `Enter your ${LAST_NAME_LABEL.toLowerCase()}`
 }
@@ -56,7 +64,9 @@ const EMAIL_OPTIONS = {
   hint: {
     text: 'To receive your reference number'
   },
-  type: 'email'
+  type: 'email',
+  autocomplete: 'email',
+  spellcheck: false
 }
 const EMAIL_MESSAGES = {
   'string.empty': `Enter an ${EMAIL_LABEL.toLowerCase()}`,
@@ -69,7 +79,8 @@ const PHONENUMBER_LENGTH = 20
 const PHONENUMBER_OPTIONS = {
   hint: {
     text: 'In addition to your email address in case we need to contact you'
-  }
+  },
+  autocomplete: 'tel'
 }
 
 const schema = joi.object().keys({
@@ -92,13 +103,13 @@ class ViewModel extends BaseViewModel {
       previousPath: '/'
     })
 
-    this.addField(FIRST_NAME_KEY, FIRST_NAME_LABEL, 'govuk-!-width-two-thirds')
-    this.addField(LAST_NAME_KEY, LAST_NAME_LABEL, 'govuk-!-width-two-thirds')
-    this.addField(ADDRESS_LINE_1_KEY, ADDRESS_LINE_1_LABEL)
-    this.addField(ADDRESS_LINE_2_KEY, `${ADDRESS_LINE_2_LABEL} (optional)`)
-    this.addField(TOWN_OR_CITY_KEY, TOWN_OR_CITY_LABEL, 'govuk-!-width-two-thirds')
+    this.addField(FIRST_NAME_KEY, FIRST_NAME_LABEL, 'govuk-!-width-two-thirds', FIRST_NAME_OPTIONS)
+    this.addField(LAST_NAME_KEY, LAST_NAME_LABEL, 'govuk-!-width-two-thirds', LAST_NAME_OPTIONS)
+    this.addField(ADDRESS_LINE_1_KEY, ADDRESS_LINE_1_LABEL, null, { autocomplete: 'address-line1' })
+    this.addField(ADDRESS_LINE_2_KEY, `${ADDRESS_LINE_2_LABEL} (optional)`, null, { autocomplete: 'address-line2' })
+    this.addField(TOWN_OR_CITY_KEY, TOWN_OR_CITY_LABEL, 'govuk-!-width-two-thirds', { autocomplete: 'address-level2' })
     this.addField(COUNTY_KEY, COUNTY_LABEL, 'govuk-!-width-two-thirds')
-    this.addField(POSTCODE_KEY, POSTCODE_LABEL, 'govuk-input--width-10')
+    this.addField(POSTCODE_KEY, POSTCODE_LABEL, 'govuk-input--width-10', { autocomplete: 'postal-code' })
     this.addField(EMAIL_KEY, EMAIL_LABEL, 'govuk-!-width-two-thirds', EMAIL_OPTIONS)
     this.addField(PHONENUMBER_KEY, `${PHONENUMBER_LABEL} (optional)`, 'govuk-input--width-10', PHONENUMBER_OPTIONS)
   }
