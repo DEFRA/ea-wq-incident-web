@@ -1,7 +1,6 @@
 const joi = require('joi')
 const dayjs = require('dayjs')
 const { BaseViewModel, baseMessages } = require('./form')
-const { string } = require('joi')
 
 const DATE_KEY = 'date'
 const DATE_LABEL = 'What date did you notice the smell?'
