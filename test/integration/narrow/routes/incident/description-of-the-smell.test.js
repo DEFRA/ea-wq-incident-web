@@ -24,53 +24,31 @@ describe('Experience test', () => {
     await server.initialize()
   })
 
-  test('GET /details-of-the-smell route returns 200', async () => {
-    // mockSession = {
-    //   date: new Date().toISOString(),
-    //   hour: 14,
-    //   minute: 35
-    // }
+  test('GET /description-of-the-smell route returns 200', async () => {
+    mockSession = {
+      description: 'test description'
+    }
     const options = {
       method: 'GET',
-      url: '/details-of-the-smell'
+      url: '/description-of-the-smell'
     }
 
     const response = await server.inject(options)
     expect(response.statusCode).toBe(200)
   })
 
-  test('POST /details-of-the-smell route returns 302', async () => {
-    mockSession = {
-      firstName: 'Mr',
-      lastName: 'Test',
-      addressLine1: 'Institute of test',
-      addressLine2: '',
-      townOrCity: 'Teston',
-      county: 'Testshire',
-      postcode: 'T3 5TR',
-      email: 'tester@test.com',
-      phonenumber: '1471',
-      strength: 'strong smell that may make your hair or clothes smell',
-      atHome: 'No',
-      location: 'elsewhere',
-      description: 'bad',
-      date: '2021-08-25T00:00:00.000Z',
-      hour: 14,
-      minute: 35
-    }
-
+  test('POST /description-of-the-smell route with \'Yes\' response redirects to details-of-the-smell', async () => {
     const options = {
       method: 'POST',
-      url: '/details-of-the-smell',
+      url: '/description-of-the-smell',
       payload: {
-        date: new Date().toISOString(),
-        hour: 14,
-        minute: 35
+        description: 'Foobar'
       }
     }
 
     const response = await server.inject(options)
     expect(response.statusCode).toBe(302)
+    expect(response.headers.location).toBe('/details-of-the-smell')
   })
 
   afterEach(async () => {

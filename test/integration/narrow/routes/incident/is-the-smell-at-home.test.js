@@ -46,7 +46,7 @@ describe('Feedback test', () => {
 
     const response = await server.inject(options)
     expect(response.statusCode).toBe(302)
-    expect(response.headers.location).toBe('/details-of-the-smell')
+    expect(response.headers.location).toBe('/description-of-the-smell')
   })
 
   afterEach(async () => {
