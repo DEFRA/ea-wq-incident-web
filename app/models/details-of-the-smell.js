@@ -1,42 +1,42 @@
 const joi = require('joi')
+const dayjs = require('dayjs')
 const { BaseViewModel, baseMessages } = require('./form')
-
-const DESCRIPTION_KEY = 'description'
-const DESCRIPTION_LABEL = 'How would you describe the smell?'
-const DESCRIPTION_LENGTH = 400
-const DESCRIPTION_OPTIONS = {
-  maxlength: DESCRIPTION_LENGTH
-}
-const DESCRIPTION_MESSAGES = {
-  'string.max': `${DESCRIPTION_LABEL.slice(0, -1)} must be ${DESCRIPTION_LENGTH} characters or fewer`
-}
+const { string } = require('joi')
 
 const DATE_KEY = 'date'
 const DATE_LABEL = 'What date did you notice the smell?'
 const DATE_MESSAGES = {
-  'string.empty': 'Enter the date you noticed the smell',
+  'any.required': 'Select the date you noticed the smell',
   'date.base': 'The date you noticed the smell must be a valid date',
   'date.less': 'The date you noticed the smell must be today or in the past'
 }
 
 const TIME_KEY = 'time'
+const TIME_HOUR_KEY = 'hour'
+const TIME_MINUTE_KEY = 'minute'
 const TIME_LABEL = 'What time of day did you notice the smell?'
-const TIME_PATTERN = /^([0-9]{2}):([0-9]{2})$/
-const TIME_OPTIONS = {
-  type: 'time',
-  hint: {
-    text: 'Use the 24 hour clock format for example 13:20'
-  }
-}
+const TIME_HOUR_LABEL = 'Hour'
+const TIME_MINUTE_LABEL = 'Minute'
+
 const TIME_MESSAGES = {
   'string.empty': 'Enter the time of day you noticed the smell',
   'string.pattern.base': 'The time of day you noticed the smell must be a valid time'
 }
 
+const TIME_HOUR_MESSAGES = {
+  'number.base': 'Enter the hour you noticed the smell'
+}
+
+const TIME_MINUTE_MESSAGES = {
+  'number.base': 'Enter the minute you noticed the smell',
+  'string.empty': 'Enter the minute you noticed the smell',
+  'string.pattern.base': 'The time of day you noticed the smell must be a valid time'
+}
+
 const schema = joi.object().keys({
-  [DESCRIPTION_KEY]: joi.string().max(DESCRIPTION_LENGTH).label(DESCRIPTION_LABEL).trim().required().allow('').messages(DESCRIPTION_MESSAGES),
   [DATE_KEY]: joi.date().less('now').label(DATE_LABEL).required().messages(DATE_MESSAGES),
-  [TIME_KEY]: joi.string().regex(TIME_PATTERN).label(TIME_LABEL).required().messages(TIME_MESSAGES)
+  [TIME_HOUR_KEY]: joi.number().min(0).max(23).label(TIME_HOUR_LABEL).required().messages(TIME_HOUR_MESSAGES),
+  [TIME_MINUTE_KEY]: joi.number().min(1).max(59).label(TIME_MINUTE_LABEL).required().messages(TIME_MINUTE_MESSAGES)
 }).messages(baseMessages).required()
 
 class ViewModel extends BaseViewModel {
@@ -44,22 +44,78 @@ class ViewModel extends BaseViewModel {
     super(data, err, {
       pageHeading: 'Details of the smell',
       path: '/details-of-the-smell',
-      previousPath: '/is-the-smell-at-home'
+      previousPath: '/description-of-the-smell'
+    })
+
+    const dateItems = [...Array(7)].map((_, i) => {
+      const d = new Date()
+      d.setDate(d.getDate() - i)
+      return dayjs(d)
     })
 
     const date = this.data[DATE_KEY]
-    if (date) {
-      this.data[DATE_KEY] = date.split('T')[0]
+    const dateOptions = {
+      items: dateItems.map(day => {
+        const value = day.format('YYYY-MM-DD')
+        return {
+          text: day.format('dddd D MMM YYYY'),
+          value,
+          checked: date ? value === dayjs(date).format('YYYY-MM-DD') : false
+        }
+      }),
+      fieldset: {
+        legend: {
+          text: DATE_LABEL
+        }
+      }
     }
 
-    const DATE_OPTIONS = {
-      attributes: { max: (new Date()).toISOString().split('T')[0] },
-      type: 'date'
+    const highlight = (classes, addError) => {
+      return addError ? `${classes} govuk-input--error` : classes
     }
 
-    this.addField(DESCRIPTION_KEY, `${DESCRIPTION_LABEL} (optional)`, '', DESCRIPTION_OPTIONS)
-    this.addField(DATE_KEY, DATE_LABEL, 'govuk-input--width-10', DATE_OPTIONS)
-    this.addField(TIME_KEY, TIME_LABEL, 'govuk-input--width-5', TIME_OPTIONS)
+    const hourError = this.errors?.[TIME_HOUR_KEY]
+    const minuteError = this.errors?.[TIME_MINUTE_KEY]
+    let errorMessage
+
+    if (hourError && minuteError) {
+      const text = TIME_MESSAGES['string.empty']
+      errorMessage = { text }
+      this.errorList = this.errorList
+        .filter(e => e.path !== 'hour' && e.path !== 'minute')
+      this.errorList.push({ path: 'time', text, href: '#hour', type: 'custom' })
+    } else if (hourError || minuteError) {
+      errorMessage = hourError || minuteError
+    }
+
+    const timeOptions = {
+      fieldset: {
+        legend: {
+          text: DATE_LABEL
+        }
+      },
+      hint: {
+        text: 'Use the 24 hour clock format for example 13:20'
+      },
+      items: [
+        {
+          id: 'hour',
+          classes: highlight('govuk-input--width-2', !!hourError),
+          name: 'hour',
+          value: this.data.hour
+        },
+        {
+          id: 'minute',
+          classes: highlight('govuk-input--width-2', !!minuteError),
+          name: 'minute',
+          value: this.data.minute
+        }
+      ],
+      errorMessage
+    }
+
+    this.addField(DATE_KEY, DATE_LABEL, null, dateOptions)
+    this.addField(TIME_KEY, TIME_LABEL, null, timeOptions)
   }
 }
 

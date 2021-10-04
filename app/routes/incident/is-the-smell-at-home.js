@@ -19,7 +19,7 @@ module.exports = [
       sessionHandler.update(request, 'incident', request.payload)
 
       const { [AT_HOME_KEY]: atHome } = request.payload
-      const next = atHome === 'No' ? '/where-is-the-smell' : '/details-of-the-smell'
+      const next = atHome === 'No' ? '/where-is-the-smell' : '/description-of-the-smell'
       return h.redirect(next)
     },
     options: {

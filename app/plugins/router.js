@@ -7,6 +7,7 @@ const routes = [].concat(
   require('../routes/incident/about-the-smell'),
   require('../routes/incident/is-the-smell-at-home'),
   require('../routes/incident/where-is-the-smell'),
+  require('../routes/incident/description-of-the-smell'),
   require('../routes/incident/details-of-the-smell'),
   require('../routes/confirmation'),
   require('../routes/cookies'),

@@ -1,7 +1,7 @@
 {% extends "form.html" %}
 
-{% from "govuk/components/input/macro.njk" import govukInput %}
-{% from "govuk/components/character-count/macro.njk" import govukCharacterCount %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/date-input/macro.njk" import govukDateInput %}
 
 {% set formSubmitButtonText = "Submit" %}
 
@@ -11,8 +11,7 @@
 
 {% block form %}
   <div id="details-of-the-smell">
-    {{ govukCharacterCount(fields.description) }}
-    {{ govukInput(fields.date) }}
-    {{ govukInput(fields.time) }}
+    {{ govukRadios(fields.date) }}
+    {{ govukDateInput(fields.time) }}
   </div>
 {% endblock %}

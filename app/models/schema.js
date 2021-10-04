@@ -3,6 +3,7 @@ const { schema: aboutYouSchema } = require('./about-you')
 const { schema: aboutSmellSchema } = require('./about-the-smell')
 const { schema: isSmellAtHomeSchema } = require('./is-the-smell-at-home')
 const { schema: whereIsSmellSchema, LOCATION_KEY } = require('./where-is-the-smell')
+const { schema: descriptionfSmellSchema } = require('./description-of-the-smell')
 const { schema: detailsOfSmellSchema } = require('./details-of-the-smell')
 
 const schema = joi.object().required()
@@ -10,6 +11,7 @@ const schema = joi.object().required()
   .concat(aboutSmellSchema)
   .concat(isSmellAtHomeSchema)
   .concat(whereIsSmellSchema)
+  .concat(descriptionfSmellSchema)
   .concat(detailsOfSmellSchema)
   // The smell location page may not have been visited
   // so we need to accomodate for that here by marking

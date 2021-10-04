@@ -10,6 +10,8 @@ function mapErrors (err) {
       errors[path] = { text: error.message }
       errorList.push({
         text: error.message,
+        type: error.type,
+        path: path,
         href: `#${path}`
       })
     })
