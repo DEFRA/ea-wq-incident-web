@@ -1,5 +1,6 @@
 const sessionHandler = require('../../services/session-handler')
 const { schema, ViewModel, AT_HOME_KEY } = require('../../models/is-the-smell-at-home')
+const { LOCATION_KEY } = require('../../models/where-is-the-smell')
 
 module.exports = [
   {
@@ -16,10 +17,19 @@ module.exports = [
     method: 'POST',
     path: '/is-the-smell-at-home',
     handler: (request, h) => {
-      sessionHandler.update(request, 'incident', request.payload)
-
       const { [AT_HOME_KEY]: atHome } = request.payload
-      const next = atHome === 'No' ? '/where-is-the-smell' : '/description-of-the-smell'
+
+      // Clear location by setting it to undefined if smell is at home
+      const data = atHome === 'Yes'
+        ? { [LOCATION_KEY]: undefined, ...request.payload }
+        : request.payload
+
+      sessionHandler.update(request, 'incident', data)
+
+      const next = atHome === 'No'
+        ? '/where-is-the-smell'
+        : '/description-of-the-smell'
+
       return h.redirect(next)
     },
     options: {
