@@ -25,11 +25,6 @@ describe('Experience test', () => {
   })
 
   test('GET /details-of-the-smell route returns 200', async () => {
-    // mockSession = {
-    //   date: new Date().toISOString(),
-    //   hour: 14,
-    //   minute: 35
-    // }
     const options = {
       method: 'GET',
       url: '/details-of-the-smell'
