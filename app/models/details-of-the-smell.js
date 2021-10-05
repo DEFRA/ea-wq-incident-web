@@ -35,7 +35,7 @@ const TIME_MINUTE_MESSAGES = {
 const schema = joi.object().keys({
   [DATE_KEY]: joi.date().less('now').label(DATE_LABEL).required().messages(DATE_MESSAGES),
   [TIME_HOUR_KEY]: joi.number().min(0).max(23).label(TIME_HOUR_LABEL).required().messages(TIME_HOUR_MESSAGES),
-  [TIME_MINUTE_KEY]: joi.number().min(1).max(59).label(TIME_MINUTE_LABEL).required().messages(TIME_MINUTE_MESSAGES)
+  [TIME_MINUTE_KEY]: joi.number().min(0).max(59).label(TIME_MINUTE_LABEL).required().messages(TIME_MINUTE_MESSAGES)
 }).messages(baseMessages).required()
 
 class ViewModel extends BaseViewModel {
