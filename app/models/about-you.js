@@ -44,9 +44,6 @@ const TOWN_OR_CITY_MESSAGES = {
 const COUNTY_KEY = 'county'
 const COUNTY_LABEL = 'County'
 const COUNTY_LENGTH = 35
-const COUNTY_MESSAGES = {
-  'string.empty': `Enter a ${COUNTY_LABEL.toLowerCase()}`
-}
 
 const POSTCODE_KEY = 'postcode'
 const POSTCODE_LABEL = 'Postcode'
@@ -89,7 +86,7 @@ const schema = joi.object().keys({
   [ADDRESS_LINE_1_KEY]: joi.string().max(ADDRESS_LINE_1_LENGTH).label(ADDRESS_LINE_1_LABEL).trim().required().messages(ADDRESS_LINE_1_MESSAGES),
   [ADDRESS_LINE_2_KEY]: joi.string().max(ADDRESS_LINE_2_LENGTH).label(ADDRESS_LINE_2_LABEL).trim().required().allow(''),
   [TOWN_OR_CITY_KEY]: joi.string().max(TOWN_OR_CITY_LENGTH).label(TOWN_OR_CITY_LABEL).trim().required().messages(TOWN_OR_CITY_MESSAGES),
-  [COUNTY_KEY]: joi.string().max(COUNTY_LENGTH).label(COUNTY_LABEL).trim().required().messages(COUNTY_MESSAGES),
+  [COUNTY_KEY]: joi.string().max(COUNTY_LENGTH).label(COUNTY_LABEL).trim().required().allow(''),
   [POSTCODE_KEY]: joi.string().max(POSTCODE_LENGTH).regex(POSTCODE_PATTERN).trim().label(POSTCODE_LABEL).required().messages(POSTCODE_MESSAGES),
   [EMAIL_KEY]: joi.string().email().max(EMAIL_LENGTH).label(EMAIL_LABEL).trim().required().messages(EMAIL_MESSAGES),
   [PHONENUMBER_KEY]: joi.string().max(PHONENUMBER_LENGTH).label(PHONENUMBER_LABEL).trim().required().allow('')
@@ -108,7 +105,7 @@ class ViewModel extends BaseViewModel {
     this.addField(ADDRESS_LINE_1_KEY, ADDRESS_LINE_1_LABEL, null, { autocomplete: 'address-line1' })
     this.addField(ADDRESS_LINE_2_KEY, `${ADDRESS_LINE_2_LABEL} (optional)`, null, { autocomplete: 'address-line2' })
     this.addField(TOWN_OR_CITY_KEY, TOWN_OR_CITY_LABEL, 'govuk-!-width-two-thirds', { autocomplete: 'address-level2' })
-    this.addField(COUNTY_KEY, COUNTY_LABEL, 'govuk-!-width-two-thirds')
+    this.addField(COUNTY_KEY, `${COUNTY_LABEL} (optional)`, 'govuk-!-width-two-thirds')
     this.addField(POSTCODE_KEY, POSTCODE_LABEL, 'govuk-input--width-10', { autocomplete: 'postal-code' })
     this.addField(EMAIL_KEY, EMAIL_LABEL, 'govuk-!-width-two-thirds', EMAIL_OPTIONS)
     this.addField(PHONENUMBER_KEY, `${PHONENUMBER_LABEL} (optional)`, 'govuk-input--width-10', PHONENUMBER_OPTIONS)
