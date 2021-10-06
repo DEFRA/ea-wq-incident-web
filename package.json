@@ -1,6 +1,6 @@
 {
   "name": "ea-incident-form-web",
-  "version": "0.1.20",
+  "version": "0.1.21",
   "description": "Report a smell at Walleys Quarry service",
   "homepage": "https://github.com/DEFRA/ea-wq-incident-web",
   "main": "app/index.js",
