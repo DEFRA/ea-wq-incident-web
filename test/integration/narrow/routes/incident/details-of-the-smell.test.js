@@ -43,9 +43,9 @@ describe('Experience test', () => {
       method: 'POST',
       url: '/details-of-the-smell',
       payload: {
-        date: tomorrow,
-        hour: 14,
-        minute: 35
+        date: today,
+        hour: 23,
+        minute: 59
       }
     }
 

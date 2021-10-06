@@ -127,11 +127,11 @@ class ViewModel extends BaseViewModel {
           text = day.format('dddd D MMMM')
         }
 
-        return {
-          text,
-          value,
-          checked: date ? value === dayjs(date).format('YYYY-MM-DD') : false
-        }
+        const checked = date
+          ? value === dayjs(date).format('YYYY-MM-DD')
+          : false
+
+        return { text, value, checked }
       }),
       fieldset: {
         legend: {
