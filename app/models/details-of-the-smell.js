@@ -107,7 +107,7 @@ class ViewModel extends BaseViewModel {
     const timeOptions = {
       fieldset: {
         legend: {
-          text: DATE_LABEL
+          text: TIME_LABEL
         }
       },
       hint: {
