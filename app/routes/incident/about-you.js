@@ -9,7 +9,7 @@ module.exports = [
       const data = sessionHandler.get(request, 'incident')
       const model = new ViewModel(data)
 
-      return h.view('about-you', model)
+      return h.view('about-you', model).code(500)
     }
   },
   {
