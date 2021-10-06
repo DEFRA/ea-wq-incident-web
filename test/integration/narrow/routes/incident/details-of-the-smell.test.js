@@ -34,6 +34,25 @@ describe('Experience test', () => {
     expect(response.statusCode).toBe(200)
   })
 
+  test('POST /details-of-the-smell route returns 200', async () => {
+    const today = new Date()
+    const tomorrow = new Date()
+    tomorrow.setDate(today.getDate() + 1)
+
+    const options = {
+      method: 'POST',
+      url: '/details-of-the-smell',
+      payload: {
+        date: tomorrow,
+        hour: 14,
+        minute: 35
+      }
+    }
+
+    const response = await server.inject(options)
+    expect(response.statusCode).toBe(200)
+  })
+
   test('POST /details-of-the-smell route returns 302', async () => {
     mockSession = {
       firstName: 'Mr',
