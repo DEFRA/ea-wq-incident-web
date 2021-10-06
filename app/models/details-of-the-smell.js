@@ -44,39 +44,7 @@ class ViewModel extends BaseViewModel {
       previousPath: '/description-of-the-smell'
     })
 
-    const dateItems = [...Array(7)].map((_, i) => {
-      const d = new Date()
-      d.setDate(d.getDate() - i)
-      return dayjs(d)
-    })
-
-    const date = this.data[DATE_KEY]
-    const dateOptions = {
-      items: dateItems.map((day, i) => {
-        const value = day.format('YYYY-MM-DD')
-        let text
-
-        if (i === 0) {
-          text = 'Today'
-        } else if (i === 1) {
-          text = 'Yesterday'
-        } else {
-          text = day.format('dddd D MMMM')
-        }
-
-        return {
-          text,
-          value,
-          checked: date ? value === dayjs(date).format('YYYY-MM-DD') : false
-        }
-      }),
-      fieldset: {
-        legend: {
-          text: DATE_LABEL
-        }
-      }
-    }
-
+    const dateOptions = this.getDateOptions()
     const highlight = (classes, addError) => {
       return addError ? `${classes} govuk-input--error` : classes
     }
@@ -135,6 +103,43 @@ class ViewModel extends BaseViewModel {
 
     this.addField(DATE_KEY, DATE_LABEL, null, dateOptions)
     this.addField(TIME_KEY, TIME_LABEL, null, timeOptions)
+  }
+
+  getDateOptions () {
+    const dateItems = [...Array(7)].map((_, i) => {
+      const d = new Date()
+      d.setDate(d.getDate() - i)
+      return dayjs(d)
+    })
+
+    const date = this.data[DATE_KEY]
+    const dateOptions = {
+      items: dateItems.map((day, i) => {
+        const value = day.format('YYYY-MM-DD')
+        let text
+
+        if (i === 0) {
+          text = 'Today'
+        } else if (i === 1) {
+          text = 'Yesterday'
+        } else {
+          text = day.format('dddd D MMMM')
+        }
+
+        return {
+          text,
+          value,
+          checked: date ? value === dayjs(date).format('YYYY-MM-DD') : false
+        }
+      }),
+      fieldset: {
+        legend: {
+          text: DATE_LABEL
+        }
+      }
+    }
+
+    return dateOptions
   }
 }
 
