@@ -7,13 +7,11 @@ function mapErrors (err) {
 
     err.details.forEach(error => {
       const path = error.path[0]
-      errors[path] = { text: error.message }
-      errorList.push({
-        text: error.message,
-        type: error.type,
-        path: path,
-        href: `#${path}`
-      })
+      const text = error.message
+      const type = error.type
+
+      errors[path] = { text, type }
+      errorList.push({ text, type, path, href: `#${path}` })
     })
 
     return [

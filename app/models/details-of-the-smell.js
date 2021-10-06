@@ -18,8 +18,8 @@ const TIME_HOUR_LABEL = 'Hour'
 const TIME_MINUTE_LABEL = 'Minute'
 
 const TIME_MESSAGES = {
-  'string.empty': 'Enter the time of day you noticed the smell',
-  'string.pattern.base': 'The time of day you noticed the smell must be a valid time'
+  'custom.empty': 'Enter the time of day you noticed the smell',
+  'custom.futuretime': 'Time of day must be in the past'
 }
 
 const TIME_HOUR_MESSAGES = {
@@ -27,9 +27,7 @@ const TIME_HOUR_MESSAGES = {
 }
 
 const TIME_MINUTE_MESSAGES = {
-  'number.base': 'Enter the minute you noticed the smell',
-  'string.empty': 'Enter the minute you noticed the smell',
-  'string.pattern.base': 'The time of day you noticed the smell must be a valid time'
+  'number.base': 'Enter the minute you noticed the smell'
 }
 
 const schema = joi.object().keys({
@@ -83,12 +81,17 @@ class ViewModel extends BaseViewModel {
       return addError ? `${classes} govuk-input--error` : classes
     }
 
+    const timeError = this.errors?.[TIME_KEY]
     const hourError = this.errors?.[TIME_HOUR_KEY]
     const minuteError = this.errors?.[TIME_MINUTE_KEY]
     let errorMessage
 
-    if (hourError && minuteError) {
-      const text = TIME_MESSAGES['string.empty']
+    if (timeError || (hourError && minuteError)) {
+      const type = timeError?.type in TIME_MESSAGES
+        ? timeError.type
+        : 'custom.empty'
+
+      const text = TIME_MESSAGES[type]
 
       // Set a combined error message
       errorMessage = { text }
@@ -98,7 +101,7 @@ class ViewModel extends BaseViewModel {
         .filter(e => e.path !== TIME_HOUR_KEY && e.path !== TIME_MINUTE_KEY)
 
       // And replace with a combined message
-      this.errorList.push({ path: 'time', text, href: `#${TIME_HOUR_KEY}`, type: 'custom' })
+      this.errorList.push({ path: TIME_KEY, text, href: `#${TIME_HOUR_KEY}`, type })
     } else if (hourError || minuteError) {
       // Set the error message to the individual error (prioritising "hour" errors)
       errorMessage = hourError || minuteError
@@ -116,13 +119,13 @@ class ViewModel extends BaseViewModel {
       items: [
         {
           id: TIME_HOUR_KEY,
-          classes: highlight('govuk-input--width-2', !!hourError),
+          classes: highlight('govuk-input--width-2', timeError || hourError),
           name: TIME_HOUR_KEY,
           value: this.data[TIME_HOUR_KEY]
         },
         {
           id: TIME_MINUTE_KEY,
-          classes: highlight('govuk-input--width-2', !!minuteError),
+          classes: highlight('govuk-input--width-2', timeError || minuteError),
           name: TIME_MINUTE_KEY,
           value: this.data[TIME_MINUTE_KEY]
         }
@@ -139,6 +142,7 @@ module.exports = {
   schema,
   ViewModel,
   DATE_KEY,
+  TIME_KEY,
   TIME_HOUR_KEY,
   TIME_MINUTE_KEY
 }
