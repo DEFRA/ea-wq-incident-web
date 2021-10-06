@@ -67,7 +67,7 @@ module.exports = [
 
       // Format the date and time fields for the email
       const day = dayjs(copyDate)
-      value.date = day.format('dddd D MMMM YYYY')
+      value.date = day.format('YYYY-MM-DD')
       value.hour = day.format('HH')
       value.minute = day.format('mm')
 
