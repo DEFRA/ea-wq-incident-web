@@ -95,10 +95,10 @@ class ViewModel extends BaseViewModel {
 
       // Remove any individual messages from the errors list
       this.errorList = this.errorList
-        .filter(e => e.path !== 'hour' && e.path !== 'minute')
+        .filter(e => e.path !== TIME_HOUR_KEY && e.path !== TIME_MINUTE_KEY)
 
       // And replace with a combined message
-      this.errorList.push({ path: 'time', text, href: '#hour', type: 'custom' })
+      this.errorList.push({ path: 'time', text, href: `#${TIME_HOUR_KEY}`, type: 'custom' })
     } else if (hourError || minuteError) {
       // Set the error message to the individual error (prioritising "hour" errors)
       errorMessage = hourError || minuteError
@@ -115,16 +115,16 @@ class ViewModel extends BaseViewModel {
       },
       items: [
         {
-          id: 'hour',
+          id: TIME_HOUR_KEY,
           classes: highlight('govuk-input--width-2', !!hourError),
-          name: 'hour',
-          value: this.data.hour
+          name: TIME_HOUR_KEY,
+          value: this.data[TIME_HOUR_KEY]
         },
         {
-          id: 'minute',
+          id: TIME_MINUTE_KEY,
           classes: highlight('govuk-input--width-2', !!minuteError),
-          name: 'minute',
-          value: this.data.minute
+          name: TIME_MINUTE_KEY,
+          value: this.data[TIME_MINUTE_KEY]
         }
       ],
       errorMessage
@@ -137,5 +137,8 @@ class ViewModel extends BaseViewModel {
 
 module.exports = {
   schema,
-  ViewModel
+  ViewModel,
+  DATE_KEY,
+  TIME_HOUR_KEY,
+  TIME_MINUTE_KEY
 }
