@@ -68,7 +68,6 @@ describe('Experience test', () => {
     expect(response.statusCode).toBe(200)
   })
 
-
   test('POST /details-of-the-smell route returns 302', async () => {
     mockSession = {
       firstName: 'Mr',
