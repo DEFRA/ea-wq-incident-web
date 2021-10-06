@@ -113,7 +113,8 @@ class ViewModel extends BaseViewModel {
     })
 
     const date = this.data[DATE_KEY]
-    const dateOptions = {
+
+    return {
       items: dateItems.map((day, i) => {
         const value = day.format('YYYY-MM-DD')
         let text
@@ -138,8 +139,6 @@ class ViewModel extends BaseViewModel {
         }
       }
     }
-
-    return dateOptions
   }
 }
 
