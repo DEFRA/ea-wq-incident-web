@@ -89,13 +89,17 @@ class ViewModel extends BaseViewModel {
           id: TIME_HOUR_KEY,
           classes: highlight('govuk-input--width-2', timeError || hourError),
           name: TIME_HOUR_KEY,
-          value: this.data[TIME_HOUR_KEY]
+          value: typeof this.data[TIME_HOUR_KEY] === 'number'
+            ? this.data[TIME_HOUR_KEY].toString().padStart(2, '0')
+            : this.data[TIME_HOUR_KEY]
         },
         {
           id: TIME_MINUTE_KEY,
           classes: highlight('govuk-input--width-2', timeError || minuteError),
           name: TIME_MINUTE_KEY,
-          value: this.data[TIME_MINUTE_KEY]
+          value: typeof this.data[TIME_MINUTE_KEY] === 'number'
+            ? this.data[TIME_MINUTE_KEY].toString().padStart(2, '0')
+            : this.data[TIME_MINUTE_KEY]
         }
       ],
       errorMessage
