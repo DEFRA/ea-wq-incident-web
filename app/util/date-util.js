@@ -1,13 +1,10 @@
-const moment = require('moment')
+const dayjs = require('dayjs')
+const utc = require('dayjs/plugin/utc')
+const timezone = require('dayjs/plugin/timezone')
 
-module.exports = {
-  buildDate: function (year, month, day, validate) {
-    if (validate) {
-      const testDate = moment([year, month - 1, day])
-      if (!testDate.isValid()) {
-        throw new Error('Invalid date')
-      }
-    }
-    return new Date(year, month - 1, day)
-  }
-}
+// Load dayjs timezone support
+// (dependent on utc plugin)
+dayjs.extend(utc)
+dayjs.extend(timezone)
+
+module.exports = dayjs

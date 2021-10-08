@@ -1,5 +1,5 @@
 const joi = require('joi')
-const dayjs = require('dayjs')
+const dayjs = require('../util/date-util')
 const { BaseViewModel, baseMessages } = require('./form')
 
 const DATE_KEY = 'date'
@@ -107,9 +107,7 @@ class ViewModel extends BaseViewModel {
 
   getDateOptions () {
     const dateItems = [...Array(7)].map((_, i) => {
-      const d = new Date()
-      d.setDate(d.getDate() - i)
-      return dayjs(d)
+      return dayjs.tz(dayjs().subtract(i, 'day'), 'Europe/London')
     })
 
     const date = this.data[DATE_KEY]
@@ -128,7 +126,7 @@ class ViewModel extends BaseViewModel {
         }
 
         const checked = date
-          ? value === dayjs(date).format('YYYY-MM-DD')
+          ? value === dayjs.tz(date, 'Europe/London').format('YYYY-MM-DD')
           : false
 
         return { text, value, checked }

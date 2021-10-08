@@ -1,4 +1,5 @@
-const dayjs = require('dayjs')
+const dayjs = require('../../util/date-util')
+
 const sessionHandler = require('../../services/session-handler')
 const { schema, ViewModel, DATE_KEY, TIME_KEY, TIME_HOUR_KEY, TIME_MINUTE_KEY } = require('../../models/details-of-the-smell')
 const incidentSchema = require('../../models/schema')
@@ -30,14 +31,12 @@ module.exports = [
         [TIME_MINUTE_KEY]: minute
       } = payload
 
-      // Build a date from the date parts
-      const copyDate = new Date(date.getTime())
-      copyDate.setHours(hour)
-      copyDate.setMinutes(minute)
+      // Build the local date from the date parts
+      const localDate = dayjs.tz(date, 'Europe/London').hour(hour).minute(minute)
 
       // If the datetime is not in the past
       // create a custom error and return
-      if (copyDate > new Date()) {
+      if (localDate.isAfter(dayjs.tz(dayjs(), 'Europe/London'))) {
         const details = [{
           path: [TIME_KEY],
           type: 'custom.futuretime'
@@ -66,10 +65,9 @@ module.exports = [
       const value = result.value
 
       // Format the date and time fields for the email
-      const day = dayjs(copyDate)
-      value.date = day.format('YYYY-MM-DD')
-      value.hour = day.format('HH')
-      value.minute = day.format('mm')
+      value.date = localDate.format('YYYY-MM-DD')
+      value.hour = localDate.format('HH')
+      value.minute = localDate.format('mm')
 
       // Send the email
       await sendEmail(value)
