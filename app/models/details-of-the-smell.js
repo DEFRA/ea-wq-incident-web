@@ -39,7 +39,7 @@ const schema = joi.object().keys({
 class ViewModel extends BaseViewModel {
   constructor (data, err) {
     super(data, err, {
-      pageHeading: 'Details of the smell',
+      pageHeading: 'When did you experience the smell?',
       path: '/details-of-the-smell',
       previousPath: '/description-of-the-smell'
     })
