@@ -18,16 +18,16 @@ const TIME_HOUR_LABEL = 'Hour'
 const TIME_MINUTE_LABEL = 'Minute'
 
 const TIME_MESSAGES = {
-  'custom.empty': 'Enter the time of day you noticed the smell',
+  'custom.empty': 'Enter the time of day in the correct format',
   'custom.futuretime': 'Time of day must be in the past'
 }
 
 const TIME_HOUR_MESSAGES = {
-  'number.base': 'Enter the hour you noticed the smell'
+  'number.base': 'Enter the hour in the correct format'
 }
 
 const TIME_MINUTE_MESSAGES = {
-  'number.base': 'Enter the minute you noticed the smell'
+  'number.base': 'Enter the minute in the correct format'
 }
 
 const schema = joi.object().keys({
