@@ -49,6 +49,20 @@ describe('Feedback test', () => {
     expect(response.headers.location).toBe('/description-of-the-smell')
   })
 
+  test('POST /is-the-smell-at-home route with no selection returns page with error message', async () => {
+    const options = {
+      method: 'POST',
+      url: '/is-the-smell-at-home',
+      payload: {
+        atHome: undefined
+      }
+    }
+
+    const response = await server.inject(options)
+    expect(response.statusCode).toBe(200)
+    expect(response.payload).toContain('There is a problem')
+  })
+
   afterEach(async () => {
     jest.clearAllMocks()
     await server.stop()

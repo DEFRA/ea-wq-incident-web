@@ -21,6 +21,34 @@ describe('Confirmation test', () => {
     expect(response.statusCode).toBe(200)
   })
 
+  test('POST /about-the-smell route with valid strength response redirects to is-the-smell-at-home', async () => {
+    const options = {
+      method: 'POST',
+      url: '/about-the-smell',
+      payload: {
+        strength: 'Slight smell'
+      }
+    }
+
+    const response = await server.inject(options)
+    expect(response.statusCode).toBe(302)
+    expect(response.headers.location).toBe('/is-the-smell-at-home')
+  })
+
+  test('POST /about-the-smell route with invalid response returns page with error message', async () => {
+    const options = {
+      method: 'POST',
+      url: '/about-the-smell',
+      payload: {
+        strength: undefined
+      }
+    }
+
+    const response = await server.inject(options)
+    expect(response.statusCode).toBe(200)
+    expect(response.payload).toContain('There is a problem')
+  })
+
   afterEach(async () => {
     jest.clearAllMocks()
     await server.stop()
