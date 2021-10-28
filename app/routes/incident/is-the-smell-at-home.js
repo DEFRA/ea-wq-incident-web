@@ -1,6 +1,7 @@
 const sessionHandler = require('../../services/session-handler')
 const { schema, ViewModel, AT_HOME_KEY } = require('../../models/is-the-smell-at-home')
 const { LOCATION_KEY } = require('../../models/where-is-the-smell')
+const logValidationError = require('../../util/log-validation-error')
 
 module.exports = [
   {
@@ -36,6 +37,7 @@ module.exports = [
       validate: {
         payload: schema,
         failAction: async (request, h, err) => {
+          logValidationError(request, err)
           const model = new ViewModel(request.payload, err)
           return h.view('is-the-smell-at-home', model).takeover()
         }

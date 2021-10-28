@@ -1,9 +1,9 @@
-const dayjs = require('../../util/date-util')
-
 const sessionHandler = require('../../services/session-handler')
 const { schema, ViewModel, DATE_KEY, TIME_KEY, TIME_HOUR_KEY, TIME_MINUTE_KEY } = require('../../models/details-of-the-smell')
 const incidentSchema = require('../../models/schema')
 const { sendEmail } = require('../../services/notify')
+const logValidationError = require('../../util/log-validation-error')
+const dayjs = require('../../util/date-util')
 
 module.exports = [
   {
@@ -84,6 +84,7 @@ module.exports = [
       validate: {
         payload: schema,
         failAction: async (request, h, err) => {
+          logValidationError(request, err)
           const model = new ViewModel(request.payload, err)
           return h.view('details-of-the-smell', model).takeover()
         }
