@@ -27,10 +27,10 @@ service:
 
 container:
   imagePullPolicy: IfNotPresent
-  requestMemory: 10Mi
-  requestCpu: 10m
-  limitMemory: 80Mi
-  limitCpu: 80m
+  requestMemory: 100Mi
+  requestCpu: 40m
+  limitMemory: 100Mi
+  limitCpu: 100m
   staticCacheTimeoutInMillis: 54000
   sessionTimeoutInMinutes: 60
   port: 3000
@@ -49,6 +49,10 @@ deployment:
   restartPolicy: Always
   priorityClassName: low
   replicas: 1
+  minReplicas: 2
+  maxReplicas: 6
+  cpuThreshold: 80
+  memoryThreshold: 80
   minReadySeconds: 5
   imagePullSecret:
   useLinkerd: true
