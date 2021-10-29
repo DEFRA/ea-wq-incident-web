@@ -15,6 +15,7 @@ describe('Experience test', () => {
   }
 
   beforeAll(async () => {
+    jest.mock('../../../../../app/plugins/crumb')
     createServer = require('../../../../../app/server')
   })
 

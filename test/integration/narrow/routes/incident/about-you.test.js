@@ -3,6 +3,7 @@ describe('Address test', () => {
   let server
 
   beforeAll(async () => {
+    jest.mock('../../../../../app/plugins/crumb')
     createServer = require('../../../../../app/server')
   })
 

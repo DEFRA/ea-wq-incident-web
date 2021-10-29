@@ -26,8 +26,8 @@ const config = {
   staticCacheTimeoutMillis: process.env.STATIC_CACHE_TIMEOUT_IN_MILLIS,
   cookieOptions: {
     ttl: process.env.COOKIE_TTL_IN_MILLIS,
-    encoding: 'base64json',
     isSameSite: 'Lax',
+    encoding: 'base64json',
     isSecure: process.env.NODE_ENV === 'production',
     isHttpOnly: true,
     clearInvalid: false,
