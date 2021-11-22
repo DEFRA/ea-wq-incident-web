@@ -17,7 +17,7 @@
         .header {
             margin-bottom: -10px; 
             padding-top: 0.5em;
-            height: 1.8em;
+            height: 3em;
             color: #fff;
             text-align: center; 
             font-size: 1.5em; 
@@ -28,7 +28,9 @@
             border-bottom: 10px solid #1d70b8;        
         }
         .logo {
-            font-size: 30px; float: left;
+            font-size: 30px; 
+            display: block;
+            clear: right;
         }
         .logo > svg {
             vertical-align: top
@@ -43,9 +45,24 @@
             position: relative;
         }
 
+
         .two-thirds {
-            width: 66%; 
+            box-sizing: border-box;
+            width: 100%;
             padding: 0 15px;
+        }
+
+        @media (min-width: 40.0625em) {
+            .two-thirds {
+                width: 66%; 
+                padding: 0 15px;
+            }
+            .header {
+                height: 1.8em;
+            }
+            .logo {
+                display: inline;
+            }
         }
 
         .main-title {
