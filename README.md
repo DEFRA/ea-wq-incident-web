@@ -97,6 +97,10 @@ configured to receive at the below end points.
 Readiness: `/healthy`
 Liveness: `/healthz`
 
+## Service down page
+
+The repository includes a [Service Down](./service-down/down.html) place holder page which is displayed by the F5 Silverline WAF when the site is unavailable. The file meets Silverline's guidelines of a small standalone page of less that 51200 bytes.
+
 ## Licence
 
 THIS INFORMATION IS LICENSED UNDER THE CONDITIONS OF THE OPEN GOVERNMENT
