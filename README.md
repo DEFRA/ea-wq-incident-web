@@ -101,6 +101,9 @@ Liveness: `/healthz`
 
 The repository includes a [Service Down](./service-down/down.html) place holder page which is displayed by the F5 Silverline WAF when the site is unavailable. The file meets Silverline's guidelines of a small standalone page of less that 51200 bytes.
 
+**Note:** the page includes special formatting for Silverline's support ID - `<%TS.request.ID()%>`. 
+This ensures that blocked requests can be identified.
+
 ## Licence
 
 THIS INFORMATION IS LICENSED UNDER THE CONDITIONS OF THE OPEN GOVERNMENT
