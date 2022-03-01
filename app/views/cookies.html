@@ -44,4 +44,49 @@
       ]
     ]
   }) }}
+
+  <h3 class="govuk-heading-m">Strictly necessary cookies</h3>
+
+  <p class="govuk-body">When you use the service, we'll set cookies to protect the integrity of other cookies and protect the service from attackers.</p>
+
+  {{ govukTable({
+    
+    caption: "Strictly necessary cookies",
+    captionClasses: "govuk-table__caption--m",
+    head: [
+      {
+        text: "Name"
+      },
+      {
+        text: "Purpose"
+      },
+      {
+        text: "Expires"
+      }
+    ],
+    rows: [
+      [
+        {
+          text: "TS01xxxxxx"
+        },
+        {
+          text: "Ensures cookies are not altered"
+        },
+        {
+          text: "When you close your browser"
+        }
+      ],
+      [
+        {
+          text: "TSPD_101"
+        },
+        {
+          text: "Proactive bot defence"
+        },
+        {
+          text: "When you close your browser"
+        }
+      ]
+    ]
+  }) }}  
 {% endblock %}
