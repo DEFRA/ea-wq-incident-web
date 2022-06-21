@@ -1,6 +1,6 @@
 {
   "name": "ea-incident-form-web",
-  "version": "0.1.30",
+  "version": "0.2.0",
   "description": "Report a smell at Walleys Quarry service",
   "homepage": "https://github.com/DEFRA/ea-wq-incident-web",
   "main": "app/index.js",
@@ -28,10 +28,10 @@
     "@hapi/yar": "^10.1.1",
     "applicationinsights": "^2.1.7",
     "dayjs": "^1.10.7",
-    "govuk-frontend": "^3.13.0",
+    "govuk-frontend": "^3.14.0",
     "hapi-pino": "^8.3.0",
     "joi": "^17.4.2",
-    "notifications-node-client": "^5.1.0",
+    "notifications-node-client": "^5.1.1",
     "nunjucks": "^3.2.3"
   },
   "devDependencies": {
