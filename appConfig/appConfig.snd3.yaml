@@ -1,0 +1,11 @@
+- key: APPINSIGHTS_INSTRUMENTATIONKEY
+  value: "{{servicename}}-APPINSIGHTS_INSTRUMENTATIONKEY"
+  type: "keyvault"
+- key: COOKIE_PASSWORD
+  value: "{{servicename}}-COOKIE_PASSWORD"
+- key: NOTIFY_API_KEY
+  value: "{{servicename}}-NOTIFY_API_KEY"
+- AZURE_KEYVAULT_URL:
+  value: "https://sndadpinfvt3401.vault.azure.net/"
+- APPINSIGHTS_SECRET_NAME:
+  value: "ncea-frontend-APPINSIGHTS-CONNECTIONSTRING"

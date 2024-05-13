@@ -1,3 +1,3 @@
-{{- include "ffc-helm-library.cluster-ip-service" (list . "ea-wq-incident-web.cluster-ip-service") -}}
+{{- include "adp-helm-library.cluster-ip-service" (list . "ea-wq-incident-web.cluster-ip-service") -}}
 {{- define "ea-wq-incident-web.cluster-ip-service" -}}
 {{- end -}}
