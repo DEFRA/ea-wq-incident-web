@@ -2,6 +2,6 @@
   value: "{{servicename}}-APPINSIGHTS_INSTRUMENTATIONKEY"
   type: "keyvault"
 - key: COOKIE_PASSWORD
-  value: "{{servicename}}-COOKIE_PASSWORD"
+  value: "{{servicename}}-COOKIE-PASSWORD"
 - key: NOTIFY_API_KEY
   value: "{{servicename}}-NOTIFY_API_KEY"

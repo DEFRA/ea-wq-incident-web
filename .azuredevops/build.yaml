@@ -1,0 +1,60 @@
+parameters:
+- name: deployFromFeature
+  displayName: "Deploy from Feature Branch"
+  type: boolean
+  default: false
+- name: deployConfigOnly
+  displayName: "Deploy App Config only"
+  type: boolean
+  default: false
+
+pr:
+  branches:
+    include:
+      - main
+  paths:
+    exclude:
+      - test-output/*
+      - bin/*
+      - obj/*
+  drafts: false
+
+trigger:
+  batch: true
+  branches:
+    include:
+      - "*"
+  paths:
+    exclude:
+      - test-output/*
+      - bin/*
+      - obj/*
+
+resources:
+  repositories:
+    - repository: DEFRA-ADPPipelineCommon
+      name: DEFRA/adp-pipeline-common
+      endpoint: DEFRA
+      type: github
+      ref: sm/370097/MigrateWalleysQuarry
+
+extends:
+  template: /pipelines/common-app-build.yaml@DEFRA-ADPPipelineCommon
+  parameters:
+    projectName: "ea-wq-incident-web"
+    serviceName: "ea-wq-incident-web"
+    teamName: "ea-wq"
+    deployFromFeature: ${{ parameters.deployFromFeature }}
+    deployConfigOnly: ${{ parameters.deployConfigOnly }}
+    appBuildConfig:
+      appFrameworkType: "nodejs"
+      projectPath: "./package.json"
+      manifestPath: "./package.json"
+      imageRepoName: "ea-wq-incident-web"
+    appTestConfig:
+      testFilePath: "./docker-compose.test.yaml"
+    appDeployConfig:
+      filepath: "./appConfig"
+      filetype: "yaml"
+      variableGroups:
+        - ea-wq-incident-web-<environment>
