@@ -1,8 +1,6 @@
 environment: development
 name: ea-wq-incident-web
-namespace: ea-wq
 image: ea-wq-incident-web
-workstream: ea-wq
 
 labels:
   component: web
