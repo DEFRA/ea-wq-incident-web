@@ -7,9 +7,6 @@ workstream: ea-wq
 labels:
   component: web
 
-appInsights:
-  key:
-
 azureIdentity:
   clientID: not-a-real-clientID
   resourceID: not-a-real-resourceID
@@ -31,14 +28,9 @@ container:
   requestCpu: 40m
   limitMemory: 100Mi
   limitCpu: 100m
-  staticCacheTimeoutInMillis: 54000
   sessionTimeoutInMinutes: 60
-  port: 3000
-  cookiePassword: passwordpasswordpasswordpasswordpassword
+  port: 3000 
   protectiveMonitoringUrl:
-  emailToAddress: test@test.com
-  notifyApiKey:
-  notifyTemplateId:
 
 ingress:
   class: nginx
@@ -70,5 +62,3 @@ livenessProbe:
   initialDelaySeconds: 30
   periodSeconds: 10
   failureThreshold: 3
-
-aadPodIdentity: true
