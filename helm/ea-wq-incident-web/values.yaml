@@ -7,17 +7,6 @@ workstream: ea-wq
 labels:
   component: web
 
-azureIdentity:
-  clientID: not-a-real-clientID
-  resourceID: not-a-real-resourceID
-
-containerConfigMap:
-  name: ea-wq-incident-web-config-map
-
-containerSecret:
-  name: ea-wq-incident-web-container-secret
-  type: Opaque
-
 service:
   port: 80
   type: ClusterIP
