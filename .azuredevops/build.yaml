@@ -43,7 +43,7 @@ extends:
   parameters:
     projectName: "ea-wq-incident-web"
     serviceName: "ea-wq-incident-web"
-    teamName: "ea-wq"
+    teamName: "fcp-ea-walleys-quarry"
     deployFromFeature: ${{ parameters.deployFromFeature }}
     deployConfigOnly: ${{ parameters.deployConfigOnly }}
     appBuildConfig:
