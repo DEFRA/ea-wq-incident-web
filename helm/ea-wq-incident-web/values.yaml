@@ -10,14 +10,12 @@ service:
   type: ClusterIP
 
 container:
-  imagePullPolicy: IfNotPresent
   requestMemory: 100Mi
   requestCpu: 40m
   limitMemory: 100Mi
   limitCpu: 100m
   sessionTimeoutInMinutes: 60
   port: 3000 
-  protectiveMonitoringUrl:
 
 ingress:
   class: nginx
@@ -25,7 +23,6 @@ ingress:
   server: example.com
 
 deployment:
-  restartPolicy: Always
   priorityClassName: low
   replicas: 1
   minReplicas: 2
