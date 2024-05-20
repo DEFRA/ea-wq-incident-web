@@ -9,4 +9,4 @@
 - key: EMAIL_TO_ADDRESS
   value: "test@test.com"
 - key: NOTIFY_TEMPLATE_ID
-  value: ""
+  value: "dummy-template"
