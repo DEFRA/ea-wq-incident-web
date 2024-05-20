@@ -4,6 +4,6 @@ name: ea-wq-incident-web-infra
 # this version is automatically updated in the build pipline
 version: 1.0.0
 dependencies:
-- name: adp-helm-library
+- name: adp-aso-helm-library
   version: ^1.0.0
-  repository: https://raw.githubusercontent.com/defra/adp-helm-repository/main/adp-helm-library
+  repository: https://raw.githubusercontent.com/defra/adp-helm-repository/main/adp-aso-helm-library
