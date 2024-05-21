@@ -24,6 +24,7 @@ ingress:
   server: example.com
 
 deployment:
+  restartPolicy: Always
   priorityClassName: low
   replicas: 1
   minReplicas: 2
