@@ -41,7 +41,7 @@ resources:
 extends:
   template: /pipelines/common-app-build.yaml@DEFRA-ADPPipelineCommon
   parameters:
-    projectName: "ea-wq-incident-web"
+    programmeName: "ffc"
     serviceName: "ea-wq-incident-web"
     teamName: "fcp-ea-walleys-quarry"
     deployFromFeature: ${{ parameters.deployFromFeature }}
