@@ -1,5 +1,7 @@
 environment: development
 name: ea-wq-incident-web
+namespace: ea-walleys-quarry
+workstream: ea-wq
 image: ea-wq-incident-web
 
 labels:
@@ -41,6 +43,7 @@ readinessProbe:
   initialDelaySeconds: 20
   periodSeconds: 10
   failureThreshold: 3
+  timeoutSeconds: 5
 
 livenessProbe:
   path: /healthz
@@ -48,3 +51,4 @@ livenessProbe:
   initialDelaySeconds: 30
   periodSeconds: 10
   failureThreshold: 3
+  timeoutSeconds: 5
