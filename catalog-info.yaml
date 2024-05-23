@@ -36,5 +36,5 @@ spec:
   lifecycle: discovery
   owner: "group:default/fcp-ea-walleys-quarry"
   
-  system: system:default/core-mcu-ai-system
+  system: system:default/ea-wq-system
   
