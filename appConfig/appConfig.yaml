@@ -6,7 +6,3 @@
   value: "{{serviceName}}"
 - key: STATIC_CACHE_TIMEOUT_IN_MILLIS
   value: "54000"
-- key: EMAIL_TO_ADDRESS
-  value: "{{servicename}}-EMAIL-TO-ADDRESS"
-- key: NOTIFY_TEMPLATE_ID
-  value: "{{servicename}}-NOTIFY-TEMPLATE-ID"
