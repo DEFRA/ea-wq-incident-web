@@ -1,10 +1,1 @@
-{{- include "ffc-helm-library.container-config-map" (list . "ea-wq-incident-web.config-map") -}}
-{{- define "ea-wq-incident-web.config-map" -}}
-data:
-  NODE_ENV: {{ quote .Values.environment }}
-  PORT: {{ quote .Values.container.port }}
-  APPINSIGHTS_CLOUDROLE: {{ quote .Values.name}}
-  STATIC_CACHE_TIMEOUT_IN_MILLIS: {{ quote .Values.container.staticCacheTimeoutInMillis }}
-  EMAIL_TO_ADDRESS: {{ quote .Values.container.emailToAddress }}
-  NOTIFY_TEMPLATE_ID: {{ quote .Values.container.notifyTemplateId }}
-{{- end -}}
+{{- include "adp-helm-library.azure-config-service-map" . -}}

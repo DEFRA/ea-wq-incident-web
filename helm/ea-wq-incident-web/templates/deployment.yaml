@@ -1,8 +1,8 @@
-{{- include "ffc-helm-library.deployment" (list . "ea-wq-incident-web.deployment") -}}
+{{- include "adp-helm-library.deployment" (list . "ea-wq-incident-web.deployment") -}}
 {{- define "ea-wq-incident-web.deployment" -}}
 spec:
   template:
     spec:
       containers:
-      - {{ include "ffc-helm-library.container" (list . "ea-wq-incident-web.container") }}
+      - {{ include "adp-helm-library.container" (list . "ea-wq-incident-web.container") }}
 {{- end -}}
