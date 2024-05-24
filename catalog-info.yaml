@@ -33,6 +33,7 @@ metadata:
       icon: cloud
     - url: https://ea-wq-incident-web.snd3.adp.defra.gov.uk/
       title: SND3
+      icon: cloud
 spec:
   type: frontend
   lifecycle: beta
