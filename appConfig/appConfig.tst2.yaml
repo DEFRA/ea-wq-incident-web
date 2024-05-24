@@ -1,5 +1,5 @@
-- key: APPINSIGHTS_INSTRUMENTATIONKEY
-  value: "{{servicename}}-APPINSIGHTS-INSTRUMENTATIONKEY"
+- key: APPINSIGHTS_CONNECTIONSTRING
+  value: "{{servicename}}-APPINSIGHTS-CONNECTIONSTRING"
   type: "keyvault"
 - key: COOKIE_PASSWORD
   value: "{{servicename}}-COOKIE-PASSWORD"
