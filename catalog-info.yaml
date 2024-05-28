@@ -31,9 +31,12 @@ metadata:
     - url: https://portal.azure.com/Defra.onmicrosoft.com
       title: Azure Portal - Defra
       icon: cloud
+    - url: https://ea-wq-incident-web.snd3.adp.defra.gov.uk/
+      title: SND3
+      icon: cloud
 spec:
-  type: backend
-  lifecycle: discovery
+  type: frontend
+  lifecycle: beta
   owner: "group:default/fcp-ea-walleys-quarry"
   
   system: system:default/ea-wq-system
