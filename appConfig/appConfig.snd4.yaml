@@ -1,0 +1,15 @@
+- key: APPINSIGHTS_CONNECTIONSTRING
+  value: "{{servicename}}-APPINSIGHTS-CONNECTIONSTRING"
+  type: "keyvault"
+- key: COOKIE_PASSWORD
+  value: "{{servicename}}-COOKIE-PASSWORD"
+  type: "keyvault"
+- key: NOTIFY_API_KEY
+  value: "{{servicename}}-NOTIFY-API-KEY"
+  type: "keyvault"
+- key: EMAIL_TO_ADDRESS
+  value: "{{servicename}}-EMAIL-TO-ADDRESS"
+  type: "keyvault"
+- key: NOTIFY_TEMPLATE_ID
+  value: "{{servicename}}-NOTIFY-TEMPLATE-ID"
+  type: "keyvault"
