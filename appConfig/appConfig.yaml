@@ -6,3 +6,7 @@
   value: "{{serviceName}}"
 - key: STATIC_CACHE_TIMEOUT_IN_MILLIS
   value: "54000"
+- key: EMAIL_TO_ADDRESS
+  value: "test@test.com"
+- key: NOTIFY_TEMPLATE_ID
+  value: "dummy-template"
