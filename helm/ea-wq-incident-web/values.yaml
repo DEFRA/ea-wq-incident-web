@@ -1,30 +1,48 @@
 environment: development
 name: ea-wq-incident-web
-namespace: ea-walleys-quarry
-workstream: ea-wq
+namespace: ea-wq
 image: ea-wq-incident-web
+workstream: ea-wq
 
 labels:
   component: web
 
+appInsights:
+  key:
+
+azureIdentity:
+  clientID: not-a-real-clientID
+  resourceID: not-a-real-resourceID
+
+containerConfigMap:
+  name: ea-wq-incident-web-config-map
+
+containerSecret:
+  name: ea-wq-incident-web-container-secret
+  type: Opaque
+
 service:
   port: 80
   type: ClusterIP
-
 container:
   imagePullPolicy: IfNotPresent
   requestMemory: 100Mi
   requestCpu: 40m
   limitMemory: 100Mi
   limitCpu: 100m
+  staticCacheTimeoutInMillis: 54000
   sessionTimeoutInMinutes: 60
-  port: 3000 
+  port: 3000
+  cookiePassword: passwordpasswordpasswordpasswordpassword
+  protectiveMonitoringUrl:
+  emailToAddress: test@test.com
+  notifyApiKey:
+  notifyTemplateId:
 
 ingress:
   class: nginx
   endpoint: ea-wq
   server: example.com
-
 deployment:
   restartPolicy: Always
   priorityClassName: low
@@ -36,14 +54,12 @@ deployment:
   minReadySeconds: 5
   imagePullSecret:
   useLinkerd: true
-
 readinessProbe:
   path: /healthy
   port: 3000
   initialDelaySeconds: 20
   periodSeconds: 10
   failureThreshold: 3
-  timeoutSeconds: 5
 
 livenessProbe:
   path: /healthz
@@ -51,4 +67,5 @@ livenessProbe:
   initialDelaySeconds: 30
   periodSeconds: 10
   failureThreshold: 3
-  timeoutSeconds: 5
+
+aadPodIdentity: true
