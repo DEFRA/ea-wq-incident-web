@@ -31,9 +31,6 @@ module.exports = {
   ],
   testEnvironment: 'node',
   testPathIgnorePatterns: [],
-  transform: {
-    '^.+\\.[t|j]sx?$': 'babel-jest'
-  },
   transformIgnorePatterns: [
     '/node_modules/(?!notifications-node-client)/node_modules/(?!axios)'
   ],
