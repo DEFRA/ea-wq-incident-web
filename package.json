@@ -31,10 +31,11 @@
     "govuk-frontend": "^3.14.0",
     "hapi-pino": "^8.3.0",
     "joi": "^17.13.3",
-    "notifications-node-client": "^8.2.1",
+    "notifications-node-client": "^7.0.6",
     "nunjucks": "^3.2.4"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.27.2",
     "@hapi/catbox-memory": "^5.0.1",
     "@pact-foundation/pact": "^9.16.4",
     "blipp": "^4.0.2",
