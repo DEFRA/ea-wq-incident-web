@@ -1,4 +1,5 @@
 environment: development
+environmentCode:
 name: ea-wq-incident-web
 namespace: ea-wq
 image: ea-wq-incident-web
@@ -8,11 +9,7 @@ labels:
   component: web
 
 appInsights:
-  key:
-
-azureIdentity:
-  clientID: not-a-real-clientID
-  resourceID: not-a-real-resourceID
+  connectionString:
 
 containerConfigMap:
   name: ea-wq-incident-web-config-map
@@ -24,6 +21,7 @@ containerSecret:
 service:
   port: 80
   type: ClusterIP
+
 container:
   imagePullPolicy: IfNotPresent
   requestMemory: 100Mi
@@ -43,6 +41,7 @@ ingress:
   class: nginx
   endpoint: ea-wq
   server: example.com
+
 deployment:
   restartPolicy: Always
   priorityClassName: low
@@ -54,6 +53,7 @@ deployment:
   minReadySeconds: 5
   imagePullSecret:
   useLinkerd: true
+
 readinessProbe:
   path: /healthy
   port: 3000
@@ -67,5 +67,3 @@ livenessProbe:
   initialDelaySeconds: 30
   periodSeconds: 10
   failureThreshold: 3
-
-aadPodIdentity: true
