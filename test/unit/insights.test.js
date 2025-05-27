@@ -19,14 +19,14 @@ describe('app insights', () => {
   afterAll(() => {
     process.env = OLD_ENV
   })
-  test('insights should not start when no APPINSIGHTS_INSTRUMENTATIONKEY', async () => {
-    process.env.APPINSIGHTS_INSTRUMENTATIONKEY = undefined
-    insights.setup()
+  test('insights should not start when no APPINSIGHTS_CONNECTIONSTRING', async () => {
+    process.env.APPINSIGHTS_CONNECTIONSTRING = undefined
+    insights.setup(process.env.APPINSIGHTS_CONNECTIONSTRING)
     expect(mockSetup).toHaveBeenCalledTimes(0)
   })
-  test('insights should start when APPINSIGHTS_INSTRUMENTATIONKEY provided', async () => {
-    process.env.APPINSIGHTS_INSTRUMENTATIONKEY = '00000000-aaaa-bbbb-cccc-dddddddddddd'
-    insights.setup()
+  test('insights should start when APPINSIGHTS_CONNECTIONSTRING provided', async () => {
+    process.env.APPINSIGHTS_CONNECTIONSTRING = '00000000-aaaa-bbbb-cccc-dddddddddddd'
+    insights.setup(process.env.APPINSIGHTS_CONNECTIONSTRING)
     expect(mockSetup).toHaveBeenCalledTimes(1)
   })
 })
