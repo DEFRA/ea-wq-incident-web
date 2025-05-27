@@ -43,16 +43,12 @@ ingress:
   server: example.com
 
 deployment:
-  restartPolicy: Always
-  priorityClassName: low
   replicas: 1
   minReplicas: 2
   maxReplicas: 6
   cpuThreshold: 80
   memoryThreshold: 80
   minReadySeconds: 5
-  imagePullSecret:
-  useLinkerd: true
 
 readinessProbe:
   path: /healthy
