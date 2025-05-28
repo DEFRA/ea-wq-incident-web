@@ -37,8 +37,6 @@ describe('Experience test', () => {
 
   test('POST /details-of-the-smell route returns 200 if time is in the future', async () => {
     const today = new Date()
-    const tomorrow = new Date()
-    tomorrow.setDate(today.getDate() + 1)
 
     const options = {
       method: 'POST',
