@@ -10,10 +10,6 @@ labels:
 appInsights:
   connectionString:
 
-azureIdentity:
-  clientID: not-a-real-clientID
-  resourceID: not-a-real-resourceID
-
 containerConfigMap:
   name: ea-wq-incident-web-config-map
 
@@ -26,7 +22,7 @@ service:
   type: ClusterIP
 
 container:
-  imagePullPolicy: IfNotPresent
+  imagePullPolicy: Always
   requestMemory: 100Mi
   requestCpu: 40m
   limitMemory: 100Mi
@@ -54,8 +50,6 @@ deployment:
   cpuThreshold: 80
   memoryThreshold: 80
   minReadySeconds: 5
-  imagePullSecret:
-  useLinkerd: true
 
 readinessProbe:
   path: /healthy
@@ -70,5 +64,3 @@ livenessProbe:
   initialDelaySeconds: 30
   periodSeconds: 10
   failureThreshold: 3
-
-workloadIdentity: true
