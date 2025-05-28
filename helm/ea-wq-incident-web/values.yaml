@@ -1,5 +1,4 @@
 environment: development
-environmentCode:
 name: ea-wq-incident-web
 namespace: ea-wq
 image: ea-wq-incident-web
@@ -10,6 +9,10 @@ labels:
 
 appInsights:
   connectionString:
+
+azureIdentity:
+  clientID: not-a-real-clientID
+  resourceID: not-a-real-resourceID
 
 containerConfigMap:
   name: ea-wq-incident-web-config-map
@@ -43,12 +46,16 @@ ingress:
   server: example.com
 
 deployment:
+  restartPolicy: Always
+  priorityClassName: low
   replicas: 1
   minReplicas: 2
   maxReplicas: 6
   cpuThreshold: 80
   memoryThreshold: 80
   minReadySeconds: 5
+  imagePullSecret:
+  useLinkerd: true
 
 readinessProbe:
   path: /healthy
@@ -63,3 +70,5 @@ livenessProbe:
   initialDelaySeconds: 30
   periodSeconds: 10
   failureThreshold: 3
+
+aadPodIdentity: true
