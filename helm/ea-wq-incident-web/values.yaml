@@ -1,11 +1,21 @@
 environment: development
 name: ea-wq-incident-web
-namespace: ea-walleys-quarry
-workstream: ea-wq
+namespace: ea-wq
 image: ea-wq-incident-web
+workstream: ea-wq
 
 labels:
   component: web
+
+appInsights:
+  key:
+
+containerConfigMap:
+  name: ea-wq-incident-web-config-map
+
+containerSecret:
+  name: ea-wq-incident-web-container-secret
+  type: Opaque
 
 service:
   port: 80
@@ -18,7 +28,13 @@ container:
   limitMemory: 100Mi
   limitCpu: 100m
   sessionTimeoutInMinutes: 60
-  port: 3000 
+  staticCacheTimeoutInMillis: 54000  
+  port: 3000
+  cookiePassword: passwordpasswordpasswordpasswordpassword
+  protectiveMonitoringUrl:
+  emailToAddress: test@test.com
+  notifyApiKey:
+  notifyTemplateId:
 
 ingress:
   class: nginx
