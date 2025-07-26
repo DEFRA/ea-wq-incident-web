@@ -4,7 +4,10 @@ module.exports = {
   handler: {
     view: {
       template: 'home',
-      context: { noIndex: false }
+      context: {
+        noIndex: false,
+        redirect: true
+      }
     }
   }
 }
