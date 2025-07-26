@@ -5,6 +5,10 @@
     <meta name="robots" content="noindex" />
   {% endif %}
 
+  {% if redirect %}
+    <meta http-equiv="refresh" content="10;url=https://www.gov.uk/report-smell" />
+  {% endif %}
+
   <!--[if !IE 8]><!-->
   <% htmlWebpackPlugin.files.css.forEach(file => { %>
   <link href="<%= file.replace('../dist/', '/static/') %>" rel="stylesheet">
