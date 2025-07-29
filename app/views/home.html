@@ -3,11 +3,10 @@
 {% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
 
 {% set decommissionedHtml %}
-  <h3 class="govuk-notification-banner__heading">
-    This has been decommissioned
-  </h3>
-  <p class="govuk-body">
-    You need to go elsewhere. <a class="govuk-notification-banner__link" href="https://www.gov.uk/report-smell">Link text</a>.
+  <p class="govuk-notification-banner__heading">
+    Reporting a smell from Walleys Quarry is transitioning to our national online reporting service. 
+    Please report using the new online form: 
+    <a class="govuk-notification-banner__link" target="_blank" rel="noopener noreferrer" href="https://www.gov.uk/report-smell">Report a smell from a waste facility, industrial site or farm in England - GOV.UK</a>
   </p>
 {% endset %}
 
@@ -16,7 +15,8 @@
   <h1 class="govuk-heading-l">{{serviceName}}</h1>
 
   {{ govukNotificationBanner({
-    html: decommissionedHtml
+    html: decommissionedHtml,
+    titleText: "Service update"
   }) }}
 
 </div>
