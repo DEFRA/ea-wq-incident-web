@@ -1,6 +1,8 @@
 {% extends "two-thirds.html" %}
 
 {% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
 
 {% set decommissionedHtml %}
   <p class="govuk-notification-banner__heading">
@@ -17,6 +19,26 @@
   {{ govukNotificationBanner({
     html: decommissionedHtml,
     titleText: "Service update"
+  }) }}
+
+  <p class="govuk-body">
+    The Environment Agency provides updates on Walleys Quarry via its <a class="govuk-link" href="https://engageenvironmentagency.uk.engagementhq.com/hub-page/walleys-quarry-landfill" target="_blank" rel="noopener noreferrer">website</a>.
+  </p>
+
+  <p class="govuk-body">To subscribe to receive these updates directly, please contact the West Midlands Enquiries Team at: <a class="govuk-link" href="mailto:Enquiries_WestMids@environment-agency.gov.uk">Enquiries_WestMids@environment-agency.gov.uk</a>. You can unsubscribe at any time.</p>
+
+  <p class="govuk-body">
+    If you still wish to report the smell from Walleys Quarry after reading these updates, please use this data capture form.
+  </p>
+
+  <p class="govuk-body">
+    All reports are logged, and a unique reference number will be generated for each report. This number will be sent to you within three working days after completion of this form, if you provide us with a valid email address.
+  </p>
+
+  {{ govukButton({
+    classes: "govuk-!-margin-top-2 govuk-!-margin-bottom-8",
+    href: "/about-you",
+    text: "Continue"
   }) }}
 
 </div>

@@ -1,4 +1,4 @@
-describe.skip('Feedback test', () => {
+describe('Feedback test', () => {
   let createServer
   let server
 
