@@ -1,4 +1,4 @@
-describe.skip('Experience test', () => {
+describe('Experience test', () => {
   let createServer
   let server
   let sessionHandler

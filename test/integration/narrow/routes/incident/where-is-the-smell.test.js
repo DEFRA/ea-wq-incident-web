@@ -1,4 +1,4 @@
-describe.skip('Location test', () => {
+describe('Location test', () => {
   let createServer
   let server
 

@@ -1,4 +1,4 @@
-describe.skip('Confirmation test', () => {
+describe('Confirmation test', () => {
   let createServer
   let server
 
