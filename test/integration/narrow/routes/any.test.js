@@ -1,4 +1,4 @@
-describe('Robots.txt test', () => {
+describe('Home test', () => {
   let createServer
   let server
 
@@ -11,14 +11,24 @@ describe('Robots.txt test', () => {
     await server.initialize()
   })
 
-  test('GET /robots.txt route returns 200', async () => {
+  test('GET / route returns 301', async () => {
     const options = {
       method: 'GET',
-      url: '/robots.txt'
+      url: '/'
     }
 
     const response = await server.inject(options)
-    expect(response.statusCode).toBe(200)
+    expect(response.statusCode).toBe(301)
+  })
+
+  test('GET /made-up-route route returns 301', async () => {
+    const options = {
+      method: 'GET',
+      url: '/made-up-route'
+    }
+
+    const response = await server.inject(options)
+    expect(response.statusCode).toBe(301)
   })
 
   afterEach(async () => {

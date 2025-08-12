@@ -6,19 +6,7 @@ async function createServer () {
   const server = hapi.server({
     port: config.port,
     routes: {
-      security: true,
-      validate: {
-        options: {
-          abortEarly: false,
-          stripUnknown: true,
-          errors: {
-            wrap: {
-              label: false,
-              array: false
-            }
-          }
-        }
-      }
+      security: true
     },
     router: {
       stripTrailingSlash: true
@@ -26,13 +14,7 @@ async function createServer () {
   })
 
   // Register the plugins
-  await server.register(require('@hapi/inert'))
-  await server.register(require('./plugins/logging'))
-  await server.register(require('./plugins/views'))
-  await server.register(require('./plugins/session-cache'))
   await server.register(require('./plugins/router'))
-  await server.register(require('./plugins/error-pages'))
-  await server.register(require('./plugins/crumb'))
 
   return server
 }

@@ -1,9 +1,0 @@
-{% extends "form.html" %}
-
-{% from "govuk/components/radios/macro.njk" import govukRadios %}
-
-{% block form %}
-  <div id="is-the-smell-at-home">
-    {{ govukRadios(fields.atHome) }}
-  </div>
-{% endblock %}
