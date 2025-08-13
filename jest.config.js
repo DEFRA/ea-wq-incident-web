@@ -31,8 +31,6 @@ module.exports = {
   ],
   testEnvironment: 'node',
   testPathIgnorePatterns: [],
-  transformIgnorePatterns: [
-    '/node_modules/(?!notifications-node-client)/node_modules/(?!axios)'
-  ],
+  transformIgnorePatterns: [],
   verbose: true
 }

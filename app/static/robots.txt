@@ -1,5 +1,0 @@
-User-agent: *
-Disallow: /
-Allow: /cookies
-Allow: /accessibility-statement
-Allow: /privacy-notice

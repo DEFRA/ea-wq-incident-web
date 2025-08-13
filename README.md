@@ -1,11 +1,9 @@
 # EA Incident Management Incident Form
 
-A digital service to enable complaints about Environment Agency incidents to be registered. 
-This is the web front end for the application.
+**This service has now been decommissioned.**
 
-The service gathers information using a GDS Style form, and emails the resultant details to the specified address.
-To run the service locally a suitable [GOV.UK Notify](https://www.notifications.service.gov.uk) service account is required. 
-See the [Environment Variables](#environment-variables) section for further details.
+This was a digital service to enable complaints about Environment Agency incidents to be registered. 
+This was the web front end for the application.
 
 ## Prerequisites
 
@@ -25,13 +23,8 @@ overridden by build and release pipelines.
 
 | Name                           | Description                               | Required  | Default            | Valid                       
 | ----                           | -----------                               | :-------: | -------            | -----   
-| EMAIL_TO_ADDRESS               | Email address to receive incident details | yes       | NA                 | any valid email address
-| NOTIFY_API_KEY                 | Api key for [GOV.UK Notify](https://www.notifications.service.gov.uk)      | yes       | NA                 |
-| NOTIFY_TEMPLATE_ID             | ID of Notify template                     | yes       | NA                 | The template is expecting the following fields: `firstName, lastName, addressLine1, addressLine2, townOrCity, county, postcode, email, phonenumber, strength, atHome, location, description, date, hour, minute` |
-| COOKIE_PASSWORD                | Cookie password                           | yes       | NA                 |                             
 | NODE_ENV                       | Node environment                          | no        | development        | development,test,production 
 | PORT                           | Port number                               | no        | 3000               |                             
-| STATIC_CACHE_TIMEOUT_IN_MILLIS | static file cache timeout                 | no        | 54000 (15 minutes) |                             
 
 ## Test structure
 
@@ -96,13 +89,6 @@ configured to receive at the below end points.
 
 Readiness: `/healthy`
 Liveness: `/healthz`
-
-## Service down page
-
-The repository includes a [Service Down](./service-down/down.html) place holder page which is displayed by the F5 Silverline WAF when the site is unavailable. The file meets Silverline's guidelines of a small standalone page of less that 51200 bytes.
-
-**Note:** the page includes special formatting for Silverline's support ID - `<%TS.request.ID()%>`. 
-This ensures that blocked requests can be identified.
 
 ## Licence
 

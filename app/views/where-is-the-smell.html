@@ -1,9 +1,0 @@
-{% extends "form.html" %}
-
-{% from "govuk/components/character-count/macro.njk" import govukCharacterCount %}
-
-{% block form %}
-  <div id="where-is-the-smell">
-    {{ govukCharacterCount(fields.location) }}
-  </div>
-{% endblock %}
